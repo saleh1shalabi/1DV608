@@ -20,7 +20,7 @@ public class ConsoleUi {
   /**
   * Responsible for staring the application.
   */
-  public Action showMenu() {
+  public void showMenu() {
     System.out.println("Welcome to the Boat Club, choose what you want to do");
     System.out.println("1. Add a member");
     System.out.println("2. Register a boat");
@@ -30,11 +30,16 @@ public class ConsoleUi {
     System.out.println("6. View Compact list");
     System.out.println("7. Delete a member");
     System.out.println("8. Delete a boat");
-    System.out.println("9. Exit");
+    System.out.println("0. Exit");
+  }
 
-    int nr = intGetter();
-    Action g = null;
-    while (g != Action.EXIT) {
+  public Action menuActionchoise() {
+    
+    int nr = 10;
+    Action g = Action.None;
+    while (g == Action.None) {
+      showMenu();
+      nr = intGetter();
       switch (nr) {
         case 1:
           g =  Action.ADDMEMBER;
@@ -50,22 +55,17 @@ public class ConsoleUi {
           break;
         case 5: 
           g = Action.VIEWLISTVERBOSE;
-          break;    
-        case 6:
-          g = Action.VIEWLISTCOMPACT;
-          break;
-        case 7:
-          g = Action.DELETEMEMBER;
           break;
         case 8:
           g = Action.DELETEBOAT;
           break;
-        case 9:
+        case 0:
           g = Action.EXIT;
           break;
         default:
           wronger();
-          nr = intGetter();
+          g = Action.None;
+          break;
       }
       break;
     }
@@ -76,6 +76,9 @@ public class ConsoleUi {
     while (true) {
       try {
         int nr = Integer.parseInt(input.nextLine());
+        // clears the console 
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         return nr;
       } catch (Exception e) {
         wronger();

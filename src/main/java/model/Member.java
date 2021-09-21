@@ -38,7 +38,7 @@ public class Member {
   }
 
   private ArrayList<Boat> getBoats() {
-    return new ArrayList<Boat>(boats);
+    return boats;
   }
 
 

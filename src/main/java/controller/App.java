@@ -18,9 +18,10 @@ public class App {
    */
   private void startApp() {
     boolean quit = false;
-    do {
-    
-      switch (console.showMenu()) {
+    ConsoleUi.Action g = null;
+    while (!quit) {
+      g = console.menuActionchoise();
+      switch (g) {
         case ADDMEMBER:
           System.out.println("Add member");
           break;
@@ -47,12 +48,15 @@ public class App {
           break;
         case EXIT:
           quit = true;
+          System.out.println("BYE");
           break;
         default:
-      }
-    } while (!quit);
-  }
+        
+        
 
+      }
+    }
+  }
   /**
    * Application starting point.
 
