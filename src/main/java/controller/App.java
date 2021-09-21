@@ -2,7 +2,7 @@ package controller;
 
 import java.lang.reflect.Member;
 import java.util.ArrayList;
-import view.ConsoleUI;
+import view.ConsoleUi;
 
 /**
  * Responsible for staring the application.
@@ -10,7 +10,7 @@ import view.ConsoleUI;
 public class App {
 
   ArrayList<Member> members = new ArrayList<>();
-  view.ConsoleUI console = new view.ConsoleUI();
+  view.ConsoleUi console = new view.ConsoleUi();
 
 
   /**
@@ -19,8 +19,8 @@ public class App {
   private void startApp() {
     boolean quit = false;
     do {
-      ConsoleUI.Action a = console.showMenu();
-      switch (a) {
+    
+      switch (console.showMenu()) {
         case ADDMEMBER:
           System.out.println("Add member");
           break;

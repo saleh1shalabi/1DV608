@@ -25,15 +25,15 @@ public class Member {
   /**
   * Responsible for staring the application.
   */
-  private String getName(){
+  private String getName() {
     return name;
   }
 
-  private String personalId(){
+  private String personalId() {
     return personalId;
   }
 
-  private int memberId(){
+  private int memberId() {
     return memberId;
   }
 

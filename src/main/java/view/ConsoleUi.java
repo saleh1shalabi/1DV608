@@ -1,16 +1,22 @@
 package view;
 
 import java.util.Scanner;
+
 /**
 * Responsible for staring the application.
 */
-public class ConsoleUI {
+public class ConsoleUi {
 
   private Scanner input = new Scanner(System.in, "utf-8");
-
+  
+  /**
+  * Responsible for staring the application.
+  */
   public enum Action {
-    ADDMEMBER, REGISTERBOAT, CHANGEMEMBER, CHANGEBOAT, VIEWLISTVERBOSE, VIEWLISTCOMPACT, DELETEMEMBER, DELETEBOAT, EXIT, None
+    ADDMEMBER, REGISTERBOAT, CHANGEMEMBER, CHANGEBOAT, VIEWLISTVERBOSE,
+    VIEWLISTCOMPACT, DELETEMEMBER, DELETEBOAT, EXIT, None
   }
+
   /**
   * Responsible for staring the application.
   */
@@ -28,7 +34,7 @@ public class ConsoleUI {
 
     int nr = intGetter();
     Action g = null;
-    while(g != Action.EXIT){
+    while (g != Action.EXIT) {
       switch (nr) {
         case 1:
           g =  Action.ADDMEMBER;
@@ -60,7 +66,7 @@ public class ConsoleUI {
         default:
           wronger();
           nr = intGetter();
-        }
+      }
       break;
     }
     return g;
