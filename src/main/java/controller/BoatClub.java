@@ -65,7 +65,8 @@ public class BoatClub {
       switch (g) {
         case ADDMEMBER:
           String memberName = consoleMember.nameGetter();
-          model.domain.Member mem = new model.domain.Member(memberName, consoleMember.personalIdGetter(), memMan.randomId());
+          model.domain.Member mem = new model.domain.Member(memberName, 
+              consoleMember.personalIdGetter(), memMan.randomId());
           memMan.addMemberToCatalog(mem);
           break;
         case REGISTERBOAT:
@@ -106,14 +107,14 @@ public class BoatClub {
   /**
   * Responsible for staring the application.
   */
-  public void randomId(){
+  public void randomId() {
 
-    String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int count = 6;
     StringBuilder builder = new StringBuilder();
     while (count-- != 0) {
-      int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
-      builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+      int character = (int) (Math.random() * alphanumeric.length());
+      builder.append(alphanumeric.charAt(character));
     }  
     System.out.println(builder);
   }

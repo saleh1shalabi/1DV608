@@ -1,10 +1,12 @@
 package view;
+
 /**
 * Responsible for staring the application.
 */
 public class ConsoleUi {
 
   private Getter get = new Getter();
+
   /**
   * Responsible for staring the application.
   */
@@ -34,8 +36,8 @@ public class ConsoleUi {
   */
   public Action menuActionchoise() {
     int nr = 10;
-    Action g = Action.None;
-    while (g == Action.None) {
+    Action g = null;
+    while (g == Action.None || g == null) {
       showMenu();
       nr = get.intGetter();
       switch (nr) {
@@ -76,6 +78,9 @@ public class ConsoleUi {
     return g;
   }
 
+  /**
+  * Responsible for staring the application.
+  */
   public void boatTypes() {
     System.out.println("Select your boat Type: ");
     System.out.println("");
@@ -85,7 +90,10 @@ public class ConsoleUi {
     System.out.println("4. Other");
 
   }
-
+  
+  /**
+  * Responsible for staring the application.
+  */
   static void wronger() {
     System.out.println("Wrong Value!");
   }

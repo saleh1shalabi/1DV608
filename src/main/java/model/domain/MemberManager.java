@@ -2,29 +2,41 @@ package model.domain;
 
 import java.util.ArrayList;
 
+/**
+* Responsible for staring the application.
+*/
 public class MemberManager {
 
   private ArrayList<model.domain.Member> members = new ArrayList<>();
-  
-  public void addMemberToCatalog(Member member){
+
+  /**
+  * Responsible for staring the application.
+  */
+  public void addMemberToCatalog(Member member) {
     members.add(member);
   }
 
+  /**
+  * Responsible for staring the application.
+  */
   public  ArrayList<Member> getMembers() {
     return members;
   }
 
-  public String randomId(){
+  /**
+  * Responsible for staring the application.
+  */
+  public String randomId() {
 
-    String ALPHA_NUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int count = 6;
     StringBuilder builder = new StringBuilder();
     while (count-- != 0) {
-      int character = (int)(Math.random()*ALPHA_NUMERIC_STRING.length());
-      builder.append(ALPHA_NUMERIC_STRING.charAt(character));
+      int character = (int) (Math.random() * alphanumeric.length());
+      builder.append(alphanumeric.charAt(character));
     }  
     for (Member mem : members) {
-      if(mem.getMemberId() == builder.toString()) {
+      if (mem.getMemberId().equals(builder.toString())) {
         randomId();
       }
     } 

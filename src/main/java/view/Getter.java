@@ -2,10 +2,18 @@ package view;
 
 import java.util.Scanner;
 
+
+/**
+* Responsible for staring the application.
+*/
 public class Getter {
+  
   private Scanner input = new Scanner(System.in, "utf-8");
   //private ConsoleUi console = new ConsoleUi();
 
+  /**
+  * Responsible for staring the application.
+  */
   public int intGetter() {
     while (true) {
       try {
@@ -15,11 +23,14 @@ public class Getter {
         System.out.flush();
         return nr;
       } catch (Exception e) {
-       ConsoleUi.wronger();
+        ConsoleUi.wronger();
       }
     }
   }
 
+  /**
+  * Responsible for staring the application.
+  */
   public String stringGetter() {
     String st = "";
     do {
@@ -30,7 +41,9 @@ public class Getter {
     return st = st.substring(0, 1).toUpperCase() + st.substring(1);
   }
 
-
+  /**
+  * Responsible for staring the application.
+  */
   public int compare(int comparTo) {
     int number = intGetter() - 1;
     while (number >= comparTo || number < 0) {
