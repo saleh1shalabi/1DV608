@@ -1,7 +1,6 @@
-package model;
+package model.domain;
 
 import java.util.ArrayList;
-
 
 /**
  * Responsible for staring the application.
@@ -9,14 +8,15 @@ import java.util.ArrayList;
 public class Member {
     
   private String name;
-  private String personalId;
-  private int memberId;
+  private Integer personalId;
+  private String memberId;
   private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
   * Responsible for staring the application.
   */
-  Member(String name, String personalId, int memberId) {
+  public Member(String name, Integer personalId, String memberId) {
+
     this.name = name;
     this.personalId = personalId;
     this.memberId = memberId;
@@ -25,34 +25,29 @@ public class Member {
   /**
   * Responsible for staring the application.
   */
-  private String getName() {
+
+  public String getName() {
     return name;
   }
 
-  private String personalId() {
+  public Integer personalId() {
     return personalId;
   }
 
-  private int memberId() {
+  public String getMemberId() {
     return memberId;
   }
 
-  private ArrayList<Boat> getBoats() {
+  public ArrayList<Boat> getBoats() {
     return boats;
   }
 
-
-  private void newBoat(double length) {
-    boats.add(new Boat(length));
+  public void addBoat(Boat boat) {
+    boats.add(boat);
   }
 
-
-  private int getNumOwnedBoats() {
+  public int ownedBoats() {
     return boats.size();
-  }
-
-  private void removeBoat(Boat boat) {
-    boats.remove(boat);
   }
 
 }

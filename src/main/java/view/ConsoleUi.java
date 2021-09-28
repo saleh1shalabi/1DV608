@@ -1,14 +1,10 @@
 package view;
-
-import java.util.Scanner;
-
 /**
 * Responsible for staring the application.
 */
 public class ConsoleUi {
 
-  private Scanner input = new Scanner(System.in, "utf-8");
-  
+  private Getter get = new Getter();
   /**
   * Responsible for staring the application.
   */
@@ -33,13 +29,15 @@ public class ConsoleUi {
     System.out.println("0. Exit");
   }
 
+  /**
+  * Responsible for staring the application.
+  */
   public Action menuActionchoise() {
-    
     int nr = 10;
     Action g = Action.None;
     while (g == Action.None) {
       showMenu();
-      nr = intGetter();
+      nr = get.intGetter();
       switch (nr) {
         case 1:
           g =  Action.ADDMEMBER;
@@ -55,6 +53,12 @@ public class ConsoleUi {
           break;
         case 5: 
           g = Action.VIEWLISTVERBOSE;
+          break;
+        case 6: 
+          g = Action.VIEWLISTCOMPACT;
+          break;
+        case 7: 
+          g = Action.DELETEMEMBER;
           break;
         case 8:
           g = Action.DELETEBOAT;
@@ -72,53 +76,17 @@ public class ConsoleUi {
     return g;
   }
 
-  private int intGetter() {
-    while (true) {
-      try {
-        int nr = Integer.parseInt(input.nextLine());
-        // clears the console 
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        return nr;
-      } catch (Exception e) {
-        wronger();
-      }
-    }
-  }
-  
-  private double doubleGetter() {
-    while (true) {
-      try {
-        double nr = Double.parseDouble(input.nextLine());
-        // clears the console 
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-        // round to only 1 decimal 
-        double te = Math.round(nr * 10.0) / 10.0;
-        // check if the value is 0
-        while (te == 0) {
-          System.out.println("you can not add så smal number");
-          nr = Double.parseDouble(input.nextLine());
-          te = Math.round(nr * 10.0) / 10.0;
-        }
-        return te;
-      } catch (Exception e) {
-        wronger();
-      }
-    }
+  public void boatTypes() {
+    System.out.println("Select your boat Type: ");
+    System.out.println("");
+    System.out.println("1. Sailboat");
+    System.out.println("2. Motorsailer");
+    System.out.println("3. Kayak/Canoe");
+    System.out.println("4. Other");
+
   }
 
-  private String stringGetter() {
-    String st = "";
-    do {
-      st = input.nextLine();
-      st = st.toLowerCase();
-    } while (st.equals(""));
-    // returns a string with upper case at the first char
-    return st = st.substring(0, 1).toUpperCase() + st.substring(1);
-  }
-
-  private void wronger() {
+  static void wronger() {
     System.out.println("Wrong Value!");
   }
 
