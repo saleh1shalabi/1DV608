@@ -26,21 +26,21 @@ public class MemberManager {
   /**
   * Responsible for staring the application.
   */
-  public String randomId() {
+  public StringBuilder randomId() {
 
     String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int count = 6;
-    StringBuilder builder = new StringBuilder();
+    StringBuilder memberId = new StringBuilder();
     while (count-- != 0) {
       int character = (int) (Math.random() * alphanumeric.length());
-      builder.append(alphanumeric.charAt(character));
+      memberId.append(alphanumeric.charAt(character));
     }  
     for (Member mem : members) {
-      if (mem.getMemberId().equals(builder.toString())) {
-        randomId();
+      if (mem.getMemberId().equals(memberId.toString())) {
+        memberId = randomId();
       }
     } 
-    return builder.toString();
+    return memberId;
   }
 }
 

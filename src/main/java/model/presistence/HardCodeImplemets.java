@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
-* Responsible for staring the application.
+* class that adds the first members when app is started.
 */
 public class HardCodeImplemets {
 
   String[] names = {"Saleh", "Hanna", "Gustav Vasa", "Monkey D. Luffy"};
-  int[] personalIds = {123, 321, 567, 9876};
+  int[] personalIds = {199903330, 321, 14960512, 19800505};
   
   Map<String, Integer> boatsSaleh = new HashMap<>();
   Map<String, Integer> boatsHanna = new HashMap<>();
@@ -18,49 +18,47 @@ public class HardCodeImplemets {
 
 
   /**
-  * Responsible for staring the application.
+  * it will add boats when an object is made.
   */
   public HardCodeImplemets() {
     boatsSaleh.put("Sailboat", 25);
     boatsSaleh.put("Motorsailer", 40);
     boatsHanna.put("Kayak", 10);
-    boatsLuffy.put("Marry GO", 13);
-    boatsLuffy.put("Thousand Sunny ", 39);
-    boatsVasa.put("Regalskeppet Vasa", 69);
-    
-
+    boatsLuffy.put("Sailboat", 13);
+    boatsLuffy.put("Motorsailer", 39);
+    boatsVasa.put("Sailboat", 69);
   }
   
   /**
-  * Responsible for staring the application.
+  * returns boats for first member.
   */
   public Map<String, Integer> getmem1Boats() {
     return boatsSaleh;
   }
 
   /**
-  * Responsible for staring the application.
+  * returns boats for second member.
   */
   public Map<String, Integer> getmem2Boats() {
     return boatsHanna;
   }
 
   /**
-  * Responsible for staring the application.
+  * returns boats for 3ed member.
   */
   public Map<String, Integer> getmem3Boats() {
     return boatsVasa;
   }
   
   /**
-  * Responsible for staring the application.
+  * returns boats for 4th member.
   */
   public Map<String, Integer> getmem4Boats() {
     return boatsLuffy;
   }
   
   /**
-  * Responsible for staring the application.
+  * returns the names array.
   */
   public String[] getNames() {
     String[] nameToRet = names;
@@ -68,7 +66,7 @@ public class HardCodeImplemets {
   }
 
   /**
-  * Responsible for staring the application.
+  * returns persId array.
   */
   public int[] getPersonalIds() {
     int[] perToRet = personalIds;

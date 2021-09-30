@@ -2,6 +2,8 @@ package view;
 
 import java.util.ArrayList;
 import model.domain.Boat;
+import model.domain.Member;
+import model.domain.MemberManager;
 
 /**
 * Responsible for staring the application.
@@ -9,6 +11,20 @@ import model.domain.Boat;
 public class ConsoleUiMember {
  
   private Getter get = new Getter();
+  
+  /**
+  * Responsible for staring the application.
+  */
+  public int chooseMember(MemberManager memMan) {
+    int count = 1; 
+    for (Member mem : memMan.getMembers()) {
+      System.out.println(count + ". " + mem.getName());
+      count++;
+    }
+    int choose = get.compare(memMan.getMembers().size());
+    return choose;
+
+  }
 
   /**
   * Responsible for staring the application.

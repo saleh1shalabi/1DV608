@@ -27,7 +27,7 @@ public class BoatClub {
     String[] nm = hc.getNames();
     int le = nm.length;
     for (int c = 0; c < le; c++) {
-      Member mem = new Member(nm[c], persId[c], memMan.randomId());
+      Member mem = new Member(nm[c], persId[c], memMan.randomId().toString());
       memMan.addMemberToCatalog(mem);
     }
     for (Map.Entry<String, Integer> b : hc.getmem1Boats().entrySet()) {
@@ -66,11 +66,11 @@ public class BoatClub {
         case ADDMEMBER:
           String memberName = consoleMember.nameGetter();
           model.domain.Member mem = new model.domain.Member(memberName, 
-              consoleMember.personalIdGetter(), memMan.randomId());
+              consoleMember.personalIdGetter(), memMan.randomId().toString());
           memMan.addMemberToCatalog(mem);
           break;
         case REGISTERBOAT:
-          int memIndex = consoleBoat.chooseMember(memMan);
+          int memIndex = consoleMember.chooseMember(memMan);
           String boatType = consoleBoat.chooseBoatType();
           Integer length = consoleBoat.lengthGetter();
           Boat boat = new Boat(boatType, length);
