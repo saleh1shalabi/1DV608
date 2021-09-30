@@ -29,6 +29,13 @@ public class ConsoleUiMember {
   /**
   * Responsible for staring the application.
   */
+  public void chooseMemberToRemoveBoat() {
+    System.out.println("Whose boat do you wanna change?");
+  }
+
+  /**
+  * Responsible for staring the application.
+  */
   public String nameGetter() {
     System.out.println("Enter The new Member name: ");
     String name = get.stringGetter();
@@ -41,6 +48,11 @@ public class ConsoleUiMember {
   public Integer personalIdGetter() {
     System.out.println("Enter the members personal number: ");
     Integer pers = get.intGetter();
+    while (String.valueOf(pers).length() != 8) {
+      ConsoleUi.wronger();
+      System.out.println(" The Correct Format is (YYYYMMDD)");
+      pers = get.intGetter();
+    }
     return pers;
   }
 
@@ -51,7 +63,7 @@ public class ConsoleUiMember {
     // Här ska ett objekt av en medlem skickas in och sedan ska metoder som getName osv anropas härifrån
     System.out.println("Member Info!");
     memInfo(member);
-    System.out.println("Change in Memebr? (Y/N)");
+    System.out.println("Do you wanna change the information?");
   }
   
   /**

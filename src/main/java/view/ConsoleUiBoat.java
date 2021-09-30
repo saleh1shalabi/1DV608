@@ -26,13 +26,17 @@ public class ConsoleUiBoat {
     return boatTypesStrings[choose];   
   }
 
+  public void askIfChange() {
+    System.out.println("Which boat do you wanna change?");
+  }
+
   /**
   * Responsible for staring the application.
   */
   public int chooseBoat(Member member) {
     int count = 1;
     for (Boat boat : member.getBoats()) {
-      System.out.println(count + ". " + boat.getType());
+      System.out.println(count + ". Type: " + boat.getType() + " || Length: " + boat.getLength());
       count++;
     }
     int choose = get.compare(member.getBoats().size());

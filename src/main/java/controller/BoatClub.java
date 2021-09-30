@@ -61,6 +61,8 @@ public class BoatClub {
     boolean quit = false;
     ConsoleUi.Action g = null;
     int memIndex = -1;
+    int boatIndex = -1;
+    boolean check = false;
     while (!quit) {
       g = console.menuActionchoise();
       switch (g) {
@@ -80,28 +82,43 @@ public class BoatClub {
         case CHANGEMEMBER:
           memIndex = consoleMember.chooseMember(memMan);
           consoleMember.showSpecMemberInfo(memMan.getMembers().get(memIndex));
-          System.out.println("Change mem");
+          check = console.checker();
+          if (check) {
+            memMan.getMembers().get(memIndex).setName(consoleMember.nameGetter());
+            memMan.getMembers().get(memIndex).setPersonalId(consoleMember.personalIdGetter());
+          }
           break;
         case CHANGEBOAT:
-          System.out.println("change boat");
+          consoleMember.chooseMemberToRemoveBoat();
+          memIndex = consoleMember.chooseMember(memMan);
+          consoleBoat.askIfChange();
+          boatIndex = consoleBoat.chooseBoat(memMan.getMembers().get(memIndex));
+          check = console.checker();
+          if (check) {
+            memMan.getMembers().get(memIndex).getBoats().get(boatIndex).setType(consoleBoat.chooseBoatType());
+            memMan.getMembers().get(memIndex).getBoats().get(boatIndex).setLength(consoleBoat.lengthGetter());
+          }
           break;
         case VIEWLISTVERBOSE:
           consoleMember.showVerboseList(memMan.getMembers());
           break;
         case VIEWLISTCOMPACT:
           consoleMember.showCompactList(memMan.getMembers());
-          System.out.println("compact");
           break;
         case DELETEMEMBER:
-          System.out.println("remove mem");
           memIndex = consoleMember.chooseMember(memMan);
-          memMan.removeMember(memMan.getMembers().get(memIndex));
+          check = console.checker();
+          if (check) {
+            memMan.removeMember(memMan.getMembers().get(memIndex));
+          }
           break;
         case DELETEBOAT:
-          System.out.println("remove boat");
           memIndex = consoleMember.chooseMember(memMan);
-          int boatIndex = consoleBoat.chooseBoat(memMan.getMembers().get(memIndex));
-          memMan.getMembers().get(memIndex).removeBoat(memMan.getMembers().get(memIndex).getBoats().get(boatIndex));
+          boatIndex = consoleBoat.chooseBoat(memMan.getMembers().get(memIndex));
+          check = console.checker();
+          if (check) {
+            memMan.getMembers().get(memIndex).removeBoat(memMan.getMembers().get(memIndex).getBoats().get(boatIndex));
+          }
           break;
         case EXIT:
           quit = true;
@@ -111,12 +128,11 @@ public class BoatClub {
       }
     }
   }
-
+  
   /**
   * Responsible for staring the application.
   */
   public void randomId() {
-
     String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int count = 6;
     StringBuilder builder = new StringBuilder();

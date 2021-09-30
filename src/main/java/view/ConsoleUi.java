@@ -81,6 +81,23 @@ public class ConsoleUi {
   /**
   * Responsible for staring the application.
   */
+  public boolean checker() {
+    System.out.println("Are You Sure? (Y/N)");
+    String answer = get.stringGetter();
+    while (!(answer.equals("Y") || answer.equals("N"))) {
+      System.out.println(answer);
+      answer = get.stringGetter();
+    }
+    if (answer.equals("Y")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  /**
+  * Responsible for staring the application.
+  */
   public void boatTypes() {
     System.out.println("Select your boat Type: ");
     System.out.println("");

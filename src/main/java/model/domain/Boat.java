@@ -24,12 +24,20 @@ public class Boat {
   public Integer getLength() {
     return length;
   }
+  
+  public void setLength(int length) {
+    this.length = length;
+  }
 
   /**
   * Responsible for staring the application.
   */
   public String getType() {
     return boatType;
+  }
+  
+  public void setType(String boatType) {
+    this.boatType = boatType;
   }
 
 }

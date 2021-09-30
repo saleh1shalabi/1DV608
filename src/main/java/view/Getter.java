@@ -18,9 +18,6 @@ public class Getter {
     while (true) {
       try {
         int nr = Integer.parseInt(input.nextLine());
-        // clears the console 
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
         return nr;
       } catch (Exception e) {
         ConsoleUi.wronger();
