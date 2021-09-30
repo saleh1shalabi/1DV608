@@ -82,7 +82,6 @@ public class ConsoleUi {
   * checks and gets an answer when change or remove actions is been made.
   */
   public boolean checker() {
-    System.out.println("Are You Sure? (Y/N)");
     String answer = get.stringGetter();
     while (!(answer.equals("Y") || answer.equals("N"))) {
       System.out.println(answer);
@@ -93,6 +92,13 @@ public class ConsoleUi {
     } else {
       return false;
     }
+  }
+  public void sureMsgDelete() {
+    System.out.println("Are You Sure? (Y/N)");
+  }
+  
+  public void sureMsgChange() {
+    System.out.println("Do You Really want to Change? (Y/N)");
   }
   
   public void shutDownApp() {

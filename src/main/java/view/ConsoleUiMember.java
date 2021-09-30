@@ -129,9 +129,9 @@ public class ConsoleUiMember {
     for (model.domain.Member memm : members) {
       String name = memm.getName();
       String memId = "   " + memm.getMemberId() + "     ";
-      while (name.length() != 18) {
+      while (name.length() < 18) {
         name =" " + name ;
-        if (name.length() != 18) {
+        if (name.length() < 18) {
           name += " "; 
         }
       }
@@ -144,5 +144,9 @@ public class ConsoleUiMember {
     }
     System.out.println("\n");
 
+  }
+
+  public void addBoat() {
+    System.out.println("Add Boats? (Y/N)");
   }
 }

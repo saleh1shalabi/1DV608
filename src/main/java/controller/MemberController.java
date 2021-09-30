@@ -12,8 +12,8 @@ public class MemberController {
   ConsoleUiMember consoleMember = new ConsoleUiMember();
   ConsoleUi console = new ConsoleUi();
   MemberManager memMan;
-  int memIndex = -1;
   boolean check = false;
+  BoatController boatCon = new BoatController(memMan);
 
   MemberController(MemberManager memMan) {
     this.memMan = memMan;
@@ -31,6 +31,11 @@ public class MemberController {
     String memberName = consoleMember.firstNameGetter();
     memberName += " " + consoleMember.lastNameGetter();
     Member mem = new Member(memberName, consoleMember.personalIdGetter(), memMan.randomId().toString());
+    consoleMember.addBoat();
+    check = console.checker();
+    if (check) {
+      boatCon.registerBoat(mem);
+    }
     memMan.addMember(mem);
 
   }
@@ -41,6 +46,7 @@ public class MemberController {
   public void changeMember() {
     Member mem = memberChooser();
     consoleMember.showSpecMemberInfo(mem);
+    console.sureMsgChange();
     check = console.checker();
     if (check) {
       if (consoleMember.whatToChange() == 1) {
@@ -58,6 +64,7 @@ public class MemberController {
   public void removeMember() {
     Member mem = memberChooser();
     check = console.checker();
+    console.sureMsgDelete();
     if (check) {
       memMan.removeMember(mem);
     }

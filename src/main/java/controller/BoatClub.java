@@ -1,5 +1,6 @@
 package controller;
 
+import model.domain.Member;
 import model.domain.MemberManager;
 import view.ConsoleUi;
 
@@ -27,7 +28,8 @@ public class BoatClub {
           memCon.memberAdder();
           break;
         case REGISTERBOAT:
-          boatCon.registerBoat();
+          Member mem = memCon.memberChooser();
+          boatCon.registerBoat(mem);
           break;
         case CHANGEMEMBER:
           memCon.changeMember();

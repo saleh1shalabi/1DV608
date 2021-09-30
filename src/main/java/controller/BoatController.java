@@ -19,14 +19,12 @@ public class BoatController {
 
   BoatController(MemberManager memMan) {
     this.memMan = memMan;
-    memCon = new MemberController(memMan);
   }
   
   /**
   * Responsible for register a boat to a member.
   */
-  public void registerBoat() {
-    Member mem = memCon.memberChooser();
+  public void registerBoat(Member mem) {
     String boatType = consoleBoat.chooseBoatType();
     Integer length = consoleBoat.lengthGetter();
     Boat boat = new Boat(boatType, length);
@@ -41,6 +39,7 @@ public class BoatController {
     Member mem = memCon.memberChooser();
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
+    console.sureMsgChange();
     boolean check = console.checker();
     if (check) {
       if (consoleBoat.whatToChange() == 1) {
@@ -60,6 +59,7 @@ public class BoatController {
     Member mem = memCon.memberChooser();
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
+    console.sureMsgDelete();
     boolean check = console.checker();
     if (check) {
       mem.removeBoat(mem.getBoats().get(boatIndex));
