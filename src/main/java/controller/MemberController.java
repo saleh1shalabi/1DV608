@@ -35,8 +35,10 @@ public class MemberController {
     Member mem = new Member(memberName, consoleMember.personalIdGetter(), memMan.randomId().toString());
     consoleMember.addBoat();
     check = console.checker();
-    if (check) {
+    while (check) {
       boatCon.registerBoat(mem);
+      consoleMember.addBoat();
+      check = console.checker();
     }
     memMan.addMember(mem);
 
