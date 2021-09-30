@@ -22,7 +22,7 @@ public class ConsoleUi {
     System.out.println("Welcome to the Boat Club, choose what you want to do");
     System.out.println("1. Add a member");
     System.out.println("2. Register a boat");
-    System.out.println("3. Change member information");
+    System.out.println("3. View and/or Change a member information");
     System.out.println("4. Change boat information");
     System.out.println("5. View Verbose list");
     System.out.println("6. View Compact list");

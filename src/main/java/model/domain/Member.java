@@ -22,10 +22,6 @@ public class Member {
     this.memberId = memberId;
   }
   
-  /**
-  * Responsible for staring the application.
-  */
-
   public String getName() {
     return name;
   }
@@ -44,6 +40,10 @@ public class Member {
 
   public void addBoat(Boat boat) {
     boats.add(boat);
+  }
+
+  public void removeBoat(Boat boat) {
+    boats.remove(boat);
   }
 
   public int ownedBoats() {

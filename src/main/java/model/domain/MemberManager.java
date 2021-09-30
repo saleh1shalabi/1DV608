@@ -12,8 +12,12 @@ public class MemberManager {
   /**
   * Responsible for staring the application.
   */
-  public void addMemberToCatalog(Member member) {
+  public void addMember(Member member) {
     members.add(member);
+  }
+
+  public void removeMember(Member member) {
+    members.remove(member);
   }
 
   /**

@@ -1,5 +1,8 @@
 package view;
 
+import model.domain.Boat;
+import model.domain.Member;
+
 /**
 * Responsible for staring the application.
 */
@@ -21,6 +24,19 @@ public class ConsoleUiBoat {
     }
     int choose = get.compare(5);
     return boatTypesStrings[choose];   
+  }
+
+  /**
+  * Responsible for staring the application.
+  */
+  public int chooseBoat(Member member) {
+    int count = 1;
+    for (Boat boat : member.getBoats()) {
+      System.out.println(count + ". " + boat.getType());
+      count++;
+    }
+    int choose = get.compare(member.getBoats().size());
+    return choose;
   }
 
   /**

@@ -28,7 +28,7 @@ public class BoatClub {
     int le = nm.length;
     for (int c = 0; c < le; c++) {
       Member mem = new Member(nm[c], persId[c], memMan.randomId().toString());
-      memMan.addMemberToCatalog(mem);
+      memMan.addMember(mem);
     }
     for (Map.Entry<String, Integer> b : hc.getmem1Boats().entrySet()) {
       String boatType = b.getKey();
@@ -60,6 +60,7 @@ public class BoatClub {
     memAdder();
     boolean quit = false;
     ConsoleUi.Action g = null;
+    int memIndex = -1;
     while (!quit) {
       g = console.menuActionchoise();
       switch (g) {
@@ -67,17 +68,19 @@ public class BoatClub {
           String memberName = consoleMember.nameGetter();
           model.domain.Member mem = new model.domain.Member(memberName, 
               consoleMember.personalIdGetter(), memMan.randomId().toString());
-          memMan.addMemberToCatalog(mem);
+          memMan.addMember(mem);
           break;
         case REGISTERBOAT:
-          int memIndex = consoleMember.chooseMember(memMan);
+          memIndex = consoleMember.chooseMember(memMan);
           String boatType = consoleBoat.chooseBoatType();
           Integer length = consoleBoat.lengthGetter();
           Boat boat = new Boat(boatType, length);
           memMan.getMembers().get(memIndex).addBoat(boat);
           break;
         case CHANGEMEMBER:
-          System.out.println("change mem");
+          memIndex = consoleMember.chooseMember(memMan);
+          consoleMember.showSpecMemberInfo(memMan.getMembers().get(memIndex));
+          System.out.println("Change mem");
           break;
         case CHANGEBOAT:
           System.out.println("change boat");
@@ -91,9 +94,14 @@ public class BoatClub {
           break;
         case DELETEMEMBER:
           System.out.println("remove mem");
+          memIndex = consoleMember.chooseMember(memMan);
+          memMan.removeMember(memMan.getMembers().get(memIndex));
           break;
         case DELETEBOAT:
           System.out.println("remove boat");
+          memIndex = consoleMember.chooseMember(memMan);
+          int boatIndex = consoleBoat.chooseBoat(memMan.getMembers().get(memIndex));
+          memMan.getMembers().get(memIndex).removeBoat(memMan.getMembers().get(memIndex).getBoats().get(boatIndex));
           break;
         case EXIT:
           quit = true;
