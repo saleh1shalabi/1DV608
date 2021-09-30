@@ -26,6 +26,9 @@ public class ConsoleUiBoat {
     return boatTypesStrings[choose];   
   }
 
+  /**
+  * shows and gets what to change.
+  */
   public int whatToChange() {
     System.out.println("1. Change Type:");
     System.out.println("2. Change length:");

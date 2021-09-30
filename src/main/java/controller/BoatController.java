@@ -12,13 +12,11 @@ import view.ConsoleUiMember;
 */
 public class BoatController {
   ConsoleUiMember consoleMember = new ConsoleUiMember();
-  MemberManager memMan;
   ConsoleUi console = new ConsoleUi();
   ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
-  MemberController memCon;
 
-  BoatController(MemberManager memMan) {
-    this.memMan = memMan;
+
+  BoatController(MemberManager memMann) {
   }
   
   /**
@@ -34,9 +32,8 @@ public class BoatController {
   /**
   * Responsible for changing a boats information.
   */
-  public void changeBoat() {
+  public void changeBoat(Member mem) {
     consoleMember.chooseMemberToRemoveBoat();
-    Member mem = memCon.memberChooser();
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
     console.sureMsgChange();
@@ -44,9 +41,8 @@ public class BoatController {
     if (check) {
       if (consoleBoat.whatToChange() == 1) {
         mem.getBoats().get(boatIndex).setType(consoleBoat.chooseBoatType());
-
       } else {
-      mem.getBoats().get(boatIndex).setLength(consoleBoat.lengthGetter());
+        mem.getBoats().get(boatIndex).setLength(consoleBoat.lengthGetter());
       }
     }
   }
@@ -54,9 +50,8 @@ public class BoatController {
   /**
   * Responsible for removing a boat from a member.
   */
-  public void removeBoat() {
+  public void removeBoat(Member mem) {
     consoleMember.chooseMessage();
-    Member mem = memCon.memberChooser();
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
     console.sureMsgDelete();

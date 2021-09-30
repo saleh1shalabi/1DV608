@@ -21,6 +21,7 @@ public class BoatClub {
     hcC.memAdder();
     boolean quit = false;
     ConsoleUi.Action g = null;
+    Member mem;
     while (!quit) {
       g = console.menuActionchoise();
       switch (g) {
@@ -28,14 +29,15 @@ public class BoatClub {
           memCon.memberAdder();
           break;
         case REGISTERBOAT:
-          Member mem = memCon.memberChooser();
+          mem = memCon.memberChooser();
           boatCon.registerBoat(mem);
           break;
         case CHANGEMEMBER:
           memCon.changeMember();
           break;
         case CHANGEBOAT:
-          boatCon.changeBoat();
+          mem = memCon.memberChooser();
+          boatCon.changeBoat(mem);
           break;
         case VIEWLISTVERBOSE:
           memCon.viewVerboseList();
@@ -47,7 +49,8 @@ public class BoatClub {
           memCon.removeMember();
           break;
         case DELETEBOAT:
-          boatCon.removeBoat();
+          mem = memCon.memberChooser();
+          boatCon.removeBoat(mem);
           break;
         case EXIT:
           quit = true;

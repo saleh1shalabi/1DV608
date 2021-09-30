@@ -27,6 +27,9 @@ public class ConsoleUiMember {
 
   }
 
+  /**
+  * shows and gets what to change.
+  */
   public int whatToChange() {
     System.out.println("1. Name");
     System.out.println("2. Personal ID");
@@ -34,6 +37,7 @@ public class ConsoleUiMember {
     System.out.println(chooes + 1);
     return chooes + 1;
   }
+
   /**
   * Responsible printing message to user to choose which member to delete a boat from.
   */
@@ -49,6 +53,7 @@ public class ConsoleUiMember {
     String firstName = get.stringGetter();
     return firstName;
   }
+
   /**
   * Responsible for viewing the last name form.
   */
@@ -84,7 +89,7 @@ public class ConsoleUiMember {
     // Här ska ett objekt av en medlem skickas in och sedan ska metoder som getName osv anropas härifrån
     System.out.println("Member Info!");
     memInfo(member);
-    System.out.println("Do you wanna change the information?");
+    // System.out.println("Do you wanna change the information?");
   }
   
   /**
@@ -92,7 +97,7 @@ public class ConsoleUiMember {
   */
   public void showVerboseList(ArrayList<Member> members) {
     System.out.println("\n------VERBOSE LIST------\n");
-    int count = 0;
+    int count = 1;
     for (Member memm : members) {
       System.out.println("Member " + count);
       memInfo(memm);
@@ -130,7 +135,7 @@ public class ConsoleUiMember {
       String name = memm.getName();
       String memId = "   " + memm.getMemberId() + "     ";
       while (name.length() < 18) {
-        name =" " + name ;
+        name = " " + name;
         if (name.length() < 18) {
           name += " "; 
         }

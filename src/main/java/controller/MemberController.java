@@ -13,10 +13,12 @@ public class MemberController {
   ConsoleUi console = new ConsoleUi();
   MemberManager memMan;
   boolean check = false;
-  BoatController boatCon = new BoatController(memMan);
+  BoatController boatCon;
 
   MemberController(MemberManager memMan) {
     this.memMan = memMan;
+    this.boatCon = new BoatController(memMan);
+
   }
   
   public Member memberChooser() {

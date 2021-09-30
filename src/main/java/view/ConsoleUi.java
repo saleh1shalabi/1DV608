@@ -93,14 +93,18 @@ public class ConsoleUi {
       return false;
     }
   }
+  
   public void sureMsgDelete() {
     System.out.println("Are You Sure? (Y/N)");
   }
   
   public void sureMsgChange() {
-    System.out.println("Do You Really want to Change? (Y/N)");
+    System.out.println("Do You want to Change? (Y/N)");
   }
   
+  /**
+  * exiting msg.
+  */
   public void shutDownApp() {
     System.out.println("...");
     System.out.println("Exiting");
@@ -108,7 +112,7 @@ public class ConsoleUi {
   }
 
   /**
-  * and error msg.
+  * error msg.
   */
   static void wronger() {
     System.out.println("Wrong Value!");
