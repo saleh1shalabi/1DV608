@@ -4,14 +4,14 @@ import model.domain.Boat;
 import model.domain.Member;
 
 /**
-* Responsible for staring the application.
+* userinterface for boats and all its outputs.
 */
 public class ConsoleUiBoat {
 
   private Getter get = new Getter();
 
   /**
-  * Responsible for staring the application.
+  * shows and gets the type chosen.
   */
   public String chooseBoatType() {
     String[] boatTypesStrings = {"Sailboat", "Motorsailer", "Kayak",
@@ -26,12 +26,20 @@ public class ConsoleUiBoat {
     return boatTypesStrings[choose];   
   }
 
-  public void askIfChange() {
-    System.out.println("Which boat do you wanna change?");
+  public int whatToChange() {
+    System.out.println("1. Change Type:");
+    System.out.println("2. Change length:");
+    int chooes = get.compare(2);
+    System.out.println(chooes + 1);
+    return chooes + 1;
+  }
+
+  public void chooseMessage() {
+    System.out.println("Choose a boat: ");
   }
 
   /**
-  * Responsible for staring the application.
+  * shows and gets the chosen boat.
   */
   public int chooseBoat(Member member) {
     int count = 1;
@@ -44,7 +52,7 @@ public class ConsoleUiBoat {
   }
 
   /**
-  * Responsible for staring the application.
+  * gets the length of a boat when created or edited.
   */
   public Integer lengthGetter() {
     System.out.println("Enter length of boat: ");

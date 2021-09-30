@@ -1,26 +1,22 @@
 package model.domain;
 
 /**
-* Responsible for staring the application.
+* boat class.
 */
 public class Boat {
+  
   private Integer length;
   private String boatType;
-  //private Getter get = new Getter();
-  
-  
 
   /**
-  * Responsible for staring the application.
+  * creating boat objects.
   */
   public Boat(String boatType, int length) {
     this.length = length;
     this.boatType = boatType;
   }  
 
-  /**
-  * Responsible for staring the application.
-  */
+
   public Integer getLength() {
     return length;
   }
@@ -29,9 +25,7 @@ public class Boat {
     this.length = length;
   }
 
-  /**
-  * Responsible for staring the application.
-  */
+
   public String getType() {
     return boatType;
   }

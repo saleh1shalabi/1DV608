@@ -4,15 +4,14 @@ import java.util.Scanner;
 
 
 /**
-* Responsible for staring the application.
+* Class for the inputs from user.
 */
 public class Getter {
   
   private Scanner input = new Scanner(System.in, "utf-8");
-  //private ConsoleUi console = new ConsoleUi();
 
   /**
-  * Responsible for staring the application.
+  * gets only integer inputs and handels error inputs type.
   */
   public int intGetter() {
     while (true) {
@@ -26,7 +25,7 @@ public class Getter {
   }
 
   /**
-  * Responsible for staring the application.
+  * Responsible for returning a string input.
   */
   public String stringGetter() {
     String st = "";
@@ -39,7 +38,8 @@ public class Getter {
   }
 
   /**
-  * Responsible for staring the application.
+  * looks at the value inputed from the user
+  * and compare it to be a right value.
   */
   public int compare(int comparTo) {
     int number = intGetter() - 1;

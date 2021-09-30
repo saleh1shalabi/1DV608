@@ -5,7 +5,6 @@ package controller;
  */
 public class App {
 
-  
   /**
    * Application starting point.
 

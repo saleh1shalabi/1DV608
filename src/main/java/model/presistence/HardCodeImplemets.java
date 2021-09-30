@@ -8,7 +8,7 @@ import java.util.Map;
 */
 public class HardCodeImplemets {
 
-  String[] names = {"Saleh", "Hanna", "Gustav Vasa", "Monkey D. Luffy"};
+  String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
   int[] personalIds = {199903330, 19950308, 14960512, 19800505};
   
   Map<String, Integer> boatsSaleh = new HashMap<>();
@@ -28,6 +28,7 @@ public class HardCodeImplemets {
     boatsLuffy.put("Motorsailer", 39);
     boatsVasa.put("Sailboat", 69);
   }
+  
   
   /**
   * returns boats for first member.

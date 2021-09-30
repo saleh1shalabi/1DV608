@@ -1,14 +1,14 @@
 package view;
 
 /**
-* Responsible for staring the application.
+* user interface for the application.
 */
 public class ConsoleUi {
 
   private Getter get = new Getter();
 
   /**
-  * Responsible for staring the application.
+  * actions to be made in the program.
   */
   public enum Action {
     ADDMEMBER, REGISTERBOAT, CHANGEMEMBER, CHANGEBOAT, VIEWLISTVERBOSE,
@@ -16,7 +16,7 @@ public class ConsoleUi {
   }
 
   /**
-  * Responsible for staring the application.
+  * shows the main menu.
   */
   public void showMenu() {
     System.out.println("Welcome to the Boat Club, choose what you want to do");
@@ -32,7 +32,7 @@ public class ConsoleUi {
   }
 
   /**
-  * Responsible for staring the application.
+  * Gets the chooes of the main menu.
   */
   public Action menuActionchoise() {
     int nr = 10;
@@ -79,7 +79,7 @@ public class ConsoleUi {
   }
 
   /**
-  * Responsible for staring the application.
+  * checks and gets an answer when change or remove actions is been made.
   */
   public boolean checker() {
     System.out.println("Are You Sure? (Y/N)");
@@ -94,22 +94,15 @@ public class ConsoleUi {
       return false;
     }
   }
-
-  /**
-  * Responsible for staring the application.
-  */
-  public void boatTypes() {
-    System.out.println("Select your boat Type: ");
-    System.out.println("");
-    System.out.println("1. Sailboat");
-    System.out.println("2. Motorsailer");
-    System.out.println("3. Kayak/Canoe");
-    System.out.println("4. Other");
-
-  }
   
+  public void shutDownApp() {
+    System.out.println("...");
+    System.out.println("Exiting");
+    System.out.println("Thanks for using our Program!");
+  }
+
   /**
-  * Responsible for staring the application.
+  * and error msg.
   */
   static void wronger() {
     System.out.println("Wrong Value!");

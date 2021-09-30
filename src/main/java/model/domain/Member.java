@@ -3,7 +3,7 @@ package model.domain;
 import java.util.ArrayList;
 
 /**
- * Responsible for staring the application.
+ * member class.
  */
 public class Member {
     
@@ -13,7 +13,7 @@ public class Member {
   private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
-  * Responsible for staring the application.
+  * creating new member object.
   */
   public Member(String name, Integer personalId, String memberId) {
     this.name = name;

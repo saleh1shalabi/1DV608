@@ -3,15 +3,12 @@ package model.domain;
 import java.util.ArrayList;
 
 /**
-* Responsible for staring the application.
+* Responsible for managing members.
 */
 public class MemberManager {
 
   private ArrayList<Member> members = new ArrayList<>();
 
-  /**
-  * Responsible for staring the application.
-  */
   public void addMember(Member member) {
     members.add(member);
   }
@@ -20,18 +17,15 @@ public class MemberManager {
     members.remove(member);
   }
 
-  /**
-  * Responsible for staring the application.
-  */
+
   public  ArrayList<Member> getMembers() {
     return members;
   }
 
   /**
-  * Responsible for staring the application.
+  * Responsible for generating uniq member ID .
   */
   public StringBuilder randomId() {
-
     String alphanumeric = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     int count = 6;
     StringBuilder memberId = new StringBuilder();

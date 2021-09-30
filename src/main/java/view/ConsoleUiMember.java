@@ -6,16 +6,17 @@ import model.domain.Member;
 import model.domain.MemberManager;
 
 /**
-* Responsible for staring the application.
+* This is the console class for members.
 */
 public class ConsoleUiMember {
  
   private Getter get = new Getter();
   
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing the members for the user so they can pick a member.
   */
   public int chooseMember(MemberManager memMan) {
+    chooseMessage();
     int count = 1; 
     for (Member mem : memMan.getMembers()) {
       System.out.println(count + ". " + mem.getName());
@@ -26,27 +27,42 @@ public class ConsoleUiMember {
 
   }
 
+  public int whatToChange() {
+    System.out.println("1. Name");
+    System.out.println("2. Personal ID");
+    int chooes = get.compare(2);
+    System.out.println(chooes + 1);
+    return chooes + 1;
+  }
   /**
-  * Responsible for staring the application.
+  * Responsible printing message to user to choose which member to delete a boat from.
   */
   public void chooseMemberToRemoveBoat() {
     System.out.println("Whose boat do you wanna change?");
   }
 
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing the first name form.
   */
-  public String nameGetter() {
-    System.out.println("Enter The new Member name: ");
-    String name = get.stringGetter();
-    return name;
+  public String firstNameGetter() {
+    System.out.println("Enter The new Members first name: ");
+    String firstName = get.stringGetter();
+    return firstName;
+  }
+  /**
+  * Responsible for viewing the last name form.
+  */
+  public String lastNameGetter() {
+    System.out.println("Enter The new Members last name: ");
+    String lastName = get.stringGetter();
+    return lastName;
   }
 
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing the personal id form.
   */
   public Integer personalIdGetter() {
-    System.out.println("Enter the members personal number: ");
+    System.out.println("Enter the members personal number: as (YYYYMMDD)");
     Integer pers = get.intGetter();
     while (String.valueOf(pers).length() != 8) {
       ConsoleUi.wronger();
@@ -56,8 +72,13 @@ public class ConsoleUiMember {
     return pers;
   }
 
+  public void chooseMessage() {
+    System.out.println("Choose a member: ");
+
+  }
+
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing a specific members information.
   */
   public void showSpecMemberInfo(Member member) {
     // Här ska ett objekt av en medlem skickas in och sedan ska metoder som getName osv anropas härifrån
@@ -67,37 +88,61 @@ public class ConsoleUiMember {
   }
   
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing the verbose list.
   */
-  public void showVerboseList(ArrayList<model.domain.Member> members) {
-    System.out.println("------VERBOSE LIST------");
-    for (model.domain.Member memm : members) {
+  public void showVerboseList(ArrayList<Member> members) {
+    System.out.println("\n------VERBOSE LIST------\n");
+    int count = 0;
+    for (Member memm : members) {
+      System.out.println("Member " + count);
       memInfo(memm);
+      count++;
     }
   }
-  
+
+  /**
+  * Responsible for viewing members information and boats.
+  */
   private void memInfo(Member member) {
     System.out.println("=============");
-    System.out.println("\n");
     System.out.println("Name: " + member.getName());
     System.out.println("Personal number: " + member.getPersonalId());
     System.out.println("Member id: " + member.getMemberId());
+    System.out.println("Number of owned Boats: " + member.ownedBoats());
+
     System.out.println("\n");
     System.out.println("Boats:");
     for (Boat boat : member.getBoats()) {
       System.out.println("Type: " + boat.getType() + " || Length: " + boat.getLength());
     }
+    System.out.println("=============");
+    System.out.println("\n");
   }
 
   /**
-  * Responsible for staring the application.
+  * Responsible for viewing the compact list.
   */
   public void showCompactList(ArrayList<model.domain.Member> members) {
-    System.out.println("-----COMPACT LIST------");
+    System.out.println("\n-----COMPACT LIST------\n");
+    System.out.println("Member  ||      Name        ||     Member ID    ||   Number Of Boats\n");
+    int count = 1;
     for (model.domain.Member memm : members) {
-      System.out.println("Name: " + memm.getName());
-      System.out.println("Member id: " + memm.getMemberId());
-      System.out.println("Number of boats: " + memm.ownedBoats());
+      String name = memm.getName();
+      String memId = "   " + memm.getMemberId() + "     ";
+      while (name.length() != 18) {
+        name =" " + name ;
+        if (name.length() != 18) {
+          name += " "; 
+        }
+      }
+      System.out.println(count + "       ||" + name + "||    " + memId + "||          " + memm.ownedBoats());
+      count++;
     }
+    System.out.println();
+    for (int c = 0; c < 69; c++) {
+      System.out.print("=");
+    }
+    System.out.println("\n");
+
   }
 }
