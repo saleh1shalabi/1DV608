@@ -9,6 +9,7 @@ import view.ConsoleUi;
 import view.ConsoleUiBoat;
 import view.ConsoleUiMember;
 
+
 /**
 * Responsible for staring the application.
 */
@@ -18,6 +19,7 @@ public class BoatClub {
   private view.ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
   private HardCodeImplemets hc = new HardCodeImplemets();
   private MemberManager memMan = new MemberManager();
+  private MemberController memCon = new MemberController(memMan);
 
   /**
    * Responsible for staring the application.
@@ -67,10 +69,7 @@ public class BoatClub {
       g = console.menuActionchoise();
       switch (g) {
         case ADDMEMBER:
-          String memberName = consoleMember.nameGetter();
-          model.domain.Member mem = new model.domain.Member(memberName, 
-              consoleMember.personalIdGetter(), memMan.randomId().toString());
-          memMan.addMember(mem);
+          memCon.memberAdder();
           break;
         case REGISTERBOAT:
           memIndex = consoleMember.chooseMember(memMan);
@@ -128,7 +127,7 @@ public class BoatClub {
       }
     }
   }
-  
+
   /**
   * Responsible for staring the application.
   */

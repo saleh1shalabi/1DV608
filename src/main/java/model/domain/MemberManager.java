@@ -7,7 +7,7 @@ import java.util.ArrayList;
 */
 public class MemberManager {
 
-  private ArrayList<model.domain.Member> members = new ArrayList<>();
+  private ArrayList<Member> members = new ArrayList<>();
 
   /**
   * Responsible for staring the application.

@@ -16,7 +16,6 @@ public class Member {
   * Responsible for staring the application.
   */
   public Member(String name, Integer personalId, String memberId) {
-
     this.name = name;
     this.personalId = personalId;
     this.memberId = memberId;
@@ -30,12 +29,12 @@ public class Member {
     this.name = name;
   }
 
-  public Integer personalId() {
+  public Integer getPersonalId() {
     return personalId;
   }
 
   public void setPersonalId(int personalId) {
-    this.personalId = personalId();
+    this.personalId = personalId;
   }
 
   public String getMemberId() {

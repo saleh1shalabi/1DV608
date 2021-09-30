@@ -80,7 +80,7 @@ public class ConsoleUiMember {
     System.out.println("=============");
     System.out.println("\n");
     System.out.println("Name: " + member.getName());
-    System.out.println("Personal number: " + member.personalId());
+    System.out.println("Personal number: " + member.getPersonalId());
     System.out.println("Member id: " + member.getMemberId());
     System.out.println("\n");
     System.out.println("Boats:");
@@ -100,6 +100,4 @@ public class ConsoleUiMember {
       System.out.println("Number of boats: " + memm.ownedBoats());
     }
   }
-
-
 }
