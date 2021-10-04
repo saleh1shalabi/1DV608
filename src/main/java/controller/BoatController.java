@@ -5,13 +5,11 @@ import model.domain.Member;
 import model.domain.MemberManager;
 import view.ConsoleUi;
 import view.ConsoleUiBoat;
-import view.ConsoleUiMember;
 
 /**
 * This is the controller of boats.
 */
 public class BoatController {
-  ConsoleUiMember consoleMember = new ConsoleUiMember();
   ConsoleUi console = new ConsoleUi();
   ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
 
