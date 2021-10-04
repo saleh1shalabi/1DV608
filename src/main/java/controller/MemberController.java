@@ -6,8 +6,8 @@ import view.ConsoleUi;
 import view.ConsoleUiMember;
 
 /**
- * this is the controller of members.
- */
+* this is the controller of members.
+*/
 public class MemberController {
   ConsoleUiMember consoleMember = new ConsoleUiMember();
   ConsoleUi console = new ConsoleUi();
@@ -27,17 +27,17 @@ public class MemberController {
   }
 
   /**
-   * Responsible adding members.
-   */
+  * Responsible adding members.
+  */
   public void memberAdder() {
     String memberName = consoleMember.firstNameGetter();
     memberName += " " + consoleMember.lastNameGetter();
     Member mem = new Member(memberName, consoleMember.personalIdGetter(), memMan.randomId().toString());
-    consoleMember.addBoat();
+    consoleMember.addBoat(mem.getName());
     check = console.checker();
     while (check) {
       boatCon.registerBoat(mem);
-      consoleMember.addBoat();
+      consoleMember.addBoat(mem.getName());
       check = console.checker();
     }
     memMan.addMember(mem);
@@ -45,8 +45,8 @@ public class MemberController {
   }
 
   /**
-   * Responsible changing member info.
-   */
+  * Responsible changing member info.
+  */
   public void changeMember() {
     Member mem = memberChooser();
     consoleMember.showSpecMemberInfo(mem);
@@ -63,12 +63,12 @@ public class MemberController {
   }
 
   /**
-   * Responsible for removing member.
-   */
+  * Responsible for removing member.
+  */
   public void removeMember() {
     Member mem = memberChooser();
+    console.sureMsgDelete(mem.getName());
     check = console.checker();
-    console.sureMsgDelete();
     if (check) {
       memMan.removeMember(mem);
     }

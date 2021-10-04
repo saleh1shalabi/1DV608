@@ -33,7 +33,6 @@ public class BoatController {
   * Responsible for changing a boats information.
   */
   public void changeBoat(Member mem) {
-    consoleMember.chooseMemberToRemoveBoat();
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
     console.sureMsgChange();
@@ -51,10 +50,10 @@ public class BoatController {
   * Responsible for removing a boat from a member.
   */
   public void removeBoat(Member mem) {
-    consoleMember.chooseMessage();
+    
     consoleBoat.chooseMessage();
     int boatIndex = consoleBoat.chooseBoat(mem);
-    console.sureMsgDelete();
+    console.sureMsgDelete(mem.getBoats().get(boatIndex).getType());
     boolean check = console.checker();
     if (check) {
       mem.removeBoat(mem.getBoats().get(boatIndex));

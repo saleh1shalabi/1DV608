@@ -15,11 +15,14 @@ public class ConsoleUi {
     VIEWLISTCOMPACT, DELETEMEMBER, DELETEBOAT, EXIT, None
   }
 
+  public void wlecomeMsg() {
+    System.out.println("Welcome to the Boat Club, choose what you want to do");
+  }
+
   /**
   * shows the main menu.
   */
   public void showMenu() {
-    System.out.println("Welcome to the Boat Club, choose what you want to do");
     System.out.println("1. Add a member");
     System.out.println("2. Register a boat");
     System.out.println("3. View and/or Change a member information");
@@ -84,7 +87,7 @@ public class ConsoleUi {
   public boolean checker() {
     String answer = get.stringGetter();
     while (!(answer.equals("Y") || answer.equals("N"))) {
-      System.out.println(answer);
+      wronger();
       answer = get.stringGetter();
     }
     if (answer.equals("Y")) {
@@ -94,8 +97,8 @@ public class ConsoleUi {
     }
   }
   
-  public void sureMsgDelete() {
-    System.out.println("Are You Sure? (Y/N)");
+  public void sureMsgDelete(String name) {
+    System.out.println("Are You Sure to delete " + name + " ? (Y/N)");
   }
   
   public void sureMsgChange() {

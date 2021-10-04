@@ -19,6 +19,7 @@ public class BoatClub {
    */
   public void startApp() {
     hcC.memAdder();
+    console.wlecomeMsg();
     boolean quit = false;
     ConsoleUi.Action g = null;
     Member mem;

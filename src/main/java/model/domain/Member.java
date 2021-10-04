@@ -3,8 +3,8 @@ package model.domain;
 import java.util.ArrayList;
 
 /**
- * member class.
- */
+* member class.
+*/
 public class Member {
     
   private String name;

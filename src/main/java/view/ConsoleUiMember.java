@@ -39,13 +39,6 @@ public class ConsoleUiMember {
   }
 
   /**
-  * Responsible printing message to user to choose which member to delete a boat from.
-  */
-  public void chooseMemberToRemoveBoat() {
-    System.out.println("Whose boat do you wanna change?");
-  }
-
-  /**
   * Responsible for viewing the first name form.
   */
   public String firstNameGetter() {
@@ -89,7 +82,6 @@ public class ConsoleUiMember {
     // Här ska ett objekt av en medlem skickas in och sedan ska metoder som getName osv anropas härifrån
     System.out.println("Member Info!");
     memInfo(member);
-    // System.out.println("Do you wanna change the information?");
   }
   
   /**
@@ -101,6 +93,7 @@ public class ConsoleUiMember {
     for (Member memm : members) {
       System.out.println("Member " + count);
       memInfo(memm);
+      System.out.println("**********************************\n");
       count++;
     }
   }
@@ -120,8 +113,7 @@ public class ConsoleUiMember {
     for (Boat boat : member.getBoats()) {
       System.out.println("Type: " + boat.getType() + " || Length: " + boat.getLength());
     }
-    System.out.println("=============");
-    System.out.println("\n");
+    System.out.println("======================");
   }
 
   /**
@@ -151,7 +143,8 @@ public class ConsoleUiMember {
 
   }
 
-  public void addBoat() {
-    System.out.println("Add Boats? (Y/N)");
+  public void addBoat(String mem) {
+    System.out.println("Add Boats to " + mem + " ? (Y/N)");
   }
+
 }
