@@ -37,7 +37,7 @@ public class ConsoleUi {
   /**
   * Gets the chooes of the main menu.
   */
-  public Action menuActionchoise() {
+  public Action menuActionChoice() {
     int nr = 10;
     Action g = null;
     while (g == Action.None || g == null) {

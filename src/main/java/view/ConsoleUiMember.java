@@ -119,7 +119,7 @@ public class ConsoleUiMember {
   /**
   * Responsible for viewing the compact list.
   */
-  public void showCompactList(ArrayList<model.domain.Member> members) {
+  public void showCompactList(ArrayList<Member> members) {
     System.out.println("\n-----COMPACT LIST------\n");
     System.out.println("Member  ||      Name        ||     Member ID    ||   Number Of Boats\n");
     int count = 1;

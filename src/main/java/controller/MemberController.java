@@ -9,15 +9,16 @@ import view.ConsoleUiMember;
 * this is the controller of members.
 */
 public class MemberController {
-  ConsoleUiMember consoleMember = new ConsoleUiMember();
-  ConsoleUi console = new ConsoleUi();
-  MemberManager memMan;
-  boolean check = false;
-  BoatController boatCon;
+  private ConsoleUiMember consoleMember = new ConsoleUiMember();
+  private ConsoleUi console;
+  private MemberManager memMan;
+  private boolean check = false;
+  private BoatController boatCon;
 
-  MemberController(MemberManager memMan) {
+  MemberController(MemberManager memMan, BoatController boatCon, ConsoleUi console) {
     this.memMan = memMan;
-    this.boatCon = new BoatController();
+    this.boatCon = boatCon;
+    this.console = console;
 
   }
   

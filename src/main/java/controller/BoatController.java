@@ -2,7 +2,6 @@ package controller;
 
 import model.domain.Boat;
 import model.domain.Member;
-import model.domain.MemberManager;
 import view.ConsoleUi;
 import view.ConsoleUiBoat;
 
@@ -10,11 +9,12 @@ import view.ConsoleUiBoat;
 * This is the controller of boats.
 */
 public class BoatController {
-  private ConsoleUi console = new ConsoleUi();
+  private ConsoleUi console;
   private ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
 
 
-  BoatController() {
+  BoatController(ConsoleUi console) {
+    this.console = console;
   }
   
   /**

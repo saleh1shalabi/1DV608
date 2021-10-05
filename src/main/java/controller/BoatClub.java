@@ -11,8 +11,9 @@ public class BoatClub {
   private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
   private HardCodeController hcC = new HardCodeController(memMan);
-  private MemberController memCon = new MemberController(memMan);
-  private BoatController boatCon = new BoatController();
+  private BoatController boatCon = new BoatController(console);
+  private MemberController memCon = new MemberController(memMan, boatCon, console);
+
 
   /**
    * Responsible for starting the application and calls on the diffrent controllers.
@@ -24,7 +25,7 @@ public class BoatClub {
     ConsoleUi.Action g = null;
     Member mem;
     while (!quit) {
-      g = console.menuActionchoise();
+      g = console.menuActionChoice();
       switch (g) {
         case ADDMEMBER:
           memCon.memberAdder();
