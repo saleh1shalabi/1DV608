@@ -117,7 +117,7 @@ public class ConsoleUi {
   /**
   * error msg.
   */
-  static void wronger() {
+  public void wronger() {
     System.out.println("Wrong Value!");
   }
 

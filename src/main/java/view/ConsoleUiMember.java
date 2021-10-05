@@ -11,6 +11,7 @@ import model.domain.MemberManager;
 public class ConsoleUiMember {
  
   private Getter get = new Getter();
+  private ConsoleUi console = new ConsoleUi();
   
   /**
   * Responsible for viewing the members for the user so they can pick a member.
@@ -63,7 +64,7 @@ public class ConsoleUiMember {
     System.out.println("Enter the members personal number: as (YYYYMMDD)");
     Integer pers = get.intGetter();
     while (String.valueOf(pers).length() != 8) {
-      ConsoleUi.wronger();
+      console.wronger();
       System.out.println(" The Correct Format is (YYYYMMDD)");
       pers = get.intGetter();
     }
