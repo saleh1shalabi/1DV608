@@ -8,8 +8,8 @@ import java.util.Map;
 */
 public class HardCodeImplemets {
 
-  String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
-  int[] personalIds = {199903330, 19950308, 14960512, 19800505};
+  private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
+  private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
   
   Map<String, Integer> boatsSaleh = new HashMap<>();
   Map<String, Integer> boatsHanna = new HashMap<>();
