@@ -12,7 +12,7 @@ public class BoatClub {
   private MemberManager memMan = new MemberManager();
   private HardCodeController hcC = new HardCodeController(memMan);
   private MemberController memCon = new MemberController(memMan);
-  private BoatController boatCon = new BoatController(memMan);
+  private BoatController boatCon = new BoatController();
 
   /**
    * Responsible for starting the application and calls on the diffrent controllers.

@@ -17,7 +17,7 @@ public class MemberController {
 
   MemberController(MemberManager memMan) {
     this.memMan = memMan;
-    this.boatCon = new BoatController(memMan);
+    this.boatCon = new BoatController();
 
   }
   

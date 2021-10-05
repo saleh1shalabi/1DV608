@@ -10,11 +10,11 @@ import view.ConsoleUiBoat;
 * This is the controller of boats.
 */
 public class BoatController {
-  ConsoleUi console = new ConsoleUi();
-  ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
+  private ConsoleUi console = new ConsoleUi();
+  private ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
 
 
-  BoatController(MemberManager memMann) {
+  BoatController() {
   }
   
   /**
