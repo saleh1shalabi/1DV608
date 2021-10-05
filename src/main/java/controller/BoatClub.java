@@ -8,7 +8,7 @@ import view.ConsoleUi;
 * This is the controller of the Boat club.
 */
 public class BoatClub {
-  private view.ConsoleUi console = new ConsoleUi();
+  private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
   private HardCodeController hcC = new HardCodeController(memMan);
   private MemberController memCon = new MemberController(memMan);
