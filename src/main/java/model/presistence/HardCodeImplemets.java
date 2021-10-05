@@ -6,9 +6,10 @@ import java.util.Map;
 /**
 * class that adds the first members when app is started.
 */
-public class HardCodeImplemets {
+public class HardCodeImplemets implements PersistenceInterface {
 
-  private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
+  private String[] STRINGS = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
+  private String[] names = STRINGS;
   private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
   
   Map<String, Integer> boatsSaleh = new HashMap<>();
