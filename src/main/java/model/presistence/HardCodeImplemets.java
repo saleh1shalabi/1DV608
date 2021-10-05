@@ -8,8 +8,7 @@ import java.util.Map;
 */
 public class HardCodeImplemets implements PersistenceInterface {
 
-  private String[] STRINGS = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
-  private String[] names = STRINGS;
+  private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
   private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
   
   Map<String, Integer> boatsSaleh = new HashMap<>();

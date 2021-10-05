@@ -10,8 +10,9 @@ import model.domain.MemberManager;
 */
 public class ConsoleUiMember {
  
-  private Getter get = new Getter();
   private ConsoleUi console = new ConsoleUi();
+  private Getter get = new Getter(console);
+
   
   /**
   * Responsible for viewing the members for the user so they can pick a member.

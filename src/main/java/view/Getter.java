@@ -9,7 +9,11 @@ import java.util.Scanner;
 public class Getter {
   
   private Scanner input = new Scanner(System.in, "utf-8");
-  private ConsoleUi console = new ConsoleUi();
+  private ConsoleUi console;
+  
+  Getter(ConsoleUi console) {
+    this.console = console;
+  }
 
   /**
   * gets only integer inputs and handels error inputs type.

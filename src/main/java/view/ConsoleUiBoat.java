@@ -8,7 +8,7 @@ import model.domain.Member;
 */
 public class ConsoleUiBoat {
 
-  private Getter get = new Getter();
+  private Getter get = new Getter(new ConsoleUi());
 
   /**
   * shows and gets the type chosen.
@@ -22,7 +22,7 @@ public class ConsoleUiBoat {
       System.out.println(count + ". " + boatType);
       count++;
     }
-    int choose = get.compare(5);
+    int choose = get.compare(4);
     return boatTypesStrings[choose];   
   }
 
