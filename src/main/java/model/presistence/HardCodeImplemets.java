@@ -1,7 +1,12 @@
 package model.presistence;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import model.domain.Boat;
+import model.domain.Member;
+
 
 /**
 * class that adds the first members when app is started.
@@ -10,57 +15,20 @@ public class HardCodeImplemets implements PersistenceInterface {
 
   private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
   private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
-  
-  Map<String, Integer> boatsSaleh = new HashMap<>();
-  Map<String, Integer> boatsHanna = new HashMap<>();
-  Map<String, Integer> boatsVasa = new HashMap<>();
-  Map<String, Integer> boatsLuffy = new HashMap<>();
-
+  private String[] memberIds ={"A23FG5", "F55THJ", "WQ4YPO", "GGW14Y"};
+  private PersistenceInterface file = new FileLoader();
 
   /**
   * it will add boats when an object is made.
   */
   public HardCodeImplemets() {
-    boatsSaleh.put("Sailboat", 25);
-    boatsSaleh.put("Motorsailer", 40);
-    boatsHanna.put("Kayak", 10);
-    boatsLuffy.put("Sailboat", 13);
-    boatsLuffy.put("Motorsailer", 39);
-    boatsVasa.put("Sailboat", 69);
-  }
-  
-  
-  /**
-  * returns boats for first member.
-  */
-  public Map<String, Integer> getmem1Boats() {
-    return boatsSaleh;
-  }
-
-  /**
-  * returns boats for second member.
-  */
-  public Map<String, Integer> getmem2Boats() {
-    return boatsHanna;
-  }
-
-  /**
-  * returns boats for 3ed member.
-  */
-  public Map<String, Integer> getmem3Boats() {
-    return boatsVasa;
-  }
-  
-  /**
-  * returns boats for 4th member.
-  */
-  public Map<String, Integer> getmem4Boats() {
-    return boatsLuffy;
+    file.getNames();
   }
   
   /**
   * returns the names array.
   */
+  @Override
   public String[] getNames() {
     String[] nameToRet = names;
     return nameToRet;
@@ -73,4 +41,50 @@ public class HardCodeImplemets implements PersistenceInterface {
     int[] perToRet = personalIds;
     return perToRet;
   }
+
+
+  @Override
+  public Map<String, ArrayList<Boat>> getBoats() {
+    Map<String, ArrayList<Boat>> toRet = new HashMap<>();
+    ArrayList<Boat> boatSaleh = new ArrayList<>();
+    ArrayList<Boat> boatHanna = new ArrayList<>();
+    ArrayList<Boat> boatLuffy = new ArrayList<>();
+    ArrayList<Boat> boatVasa = new ArrayList<>();
+
+    boatSaleh.add(new Boat("SailBoat", 45));
+    boatSaleh.add(new Boat("Kayak", 10));
+    boatHanna.add(new Boat("Motorsailer", 35));
+    boatLuffy.add(new Boat("SailBoat", 19));
+    boatLuffy.add(new Boat("Motorsailer", 39));
+    boatVasa.add(new Boat("Sailboat", 69));
+
+    
+    toRet.put("A23FG5", boatSaleh);
+    toRet.put("F55THJ", boatHanna);
+    toRet.put("WQ4YPO", boatVasa);
+    toRet.put("GGW14Y", boatLuffy);
+
+    return toRet;
+  }
+
+
+  @Override
+  public String[] getMemberIds() {
+    String[] memIdsToRet = memberIds;
+    return memIdsToRet;
+  }
+
+  @Override
+  public void saveBoats(ArrayList<Member> members) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void saveMembers(ArrayList<Member> members) {
+    // TODO Auto-generated method stub
+    
+  }
+
+
 }

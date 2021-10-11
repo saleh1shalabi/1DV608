@@ -10,7 +10,8 @@ import view.ConsoleUi;
 public class BoatClub {
   private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
-  private HardCodeController hcC = new HardCodeController(memMan);
+  private DataController hc = new HardCodeController(memMan);
+  private DataController fc = new FileController(memMan);
   private BoatController boatCon = new BoatController(console);
   private MemberController memCon = new MemberController(memMan, boatCon, console);
 
@@ -19,7 +20,8 @@ public class BoatClub {
    * Responsible for starting the application and calls on the diffrent controllers.
    */
   public void startApp() {
-    hcC.memAdder();
+    // hc.memAdder();
+    fc.memAdder();
     console.wlecomeMsg();
     boolean quit = false;
     ConsoleUi.Action g = null;
@@ -56,6 +58,7 @@ public class BoatClub {
           break;
         case EXIT:
           quit = true;
+          fc.save();
           console.shutDownApp();
           break;
         default:

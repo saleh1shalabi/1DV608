@@ -41,6 +41,10 @@ public class Member {
     return memberId;
   }
 
+  public void setMemberId(String memberId) {
+    this.memberId = memberId;
+  }
+
   public ArrayList<Boat> getBoats() {
     return boats;
   }
