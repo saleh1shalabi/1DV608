@@ -8,7 +8,7 @@ import model.domain.Member;
 */
 public class ConsoleUiBoat {
 
-  private Getter get = new Getter(new ConsoleUi());
+  private Getter get = new Getter();
 
   /**
   * shows and gets the type chosen.
@@ -30,8 +30,8 @@ public class ConsoleUiBoat {
   * shows and gets what to change.
   */
   public int whatToChange() {
-    System.out.println("1. Change Type:");
-    System.out.println("2. Change length:");
+    System.out.println("1. Change Type");
+    System.out.println("2. Change length");
     int chooes = get.compare(2);
     System.out.println(chooes + 1);
     return chooes + 1;

@@ -11,7 +11,7 @@ import model.domain.MemberManager;
 public class ConsoleUiMember {
  
   private ConsoleUi console = new ConsoleUi();
-  private Getter get = new Getter(console);
+  private Getter get = new Getter();
 
   
   /**

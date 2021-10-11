@@ -9,12 +9,9 @@ import java.util.Scanner;
 public class Getter {
   
   private Scanner input = new Scanner(System.in, "utf-8");
-  private ConsoleUi console;
   
-  Getter(ConsoleUi console) {
-    this.console = console;
-  }
-
+  
+  
   /**
   * gets only integer inputs and handels error inputs type.
   */
@@ -24,7 +21,7 @@ public class Getter {
         int nr = Integer.parseInt(input.nextLine());
         return nr;
       } catch (Exception e) {
-        console.wronger();
+        System.out.println("Wrong Value!");
       }
     }
   }
@@ -49,7 +46,7 @@ public class Getter {
   public int compare(int comparTo) {
     int number = intGetter() - 1;
     while (number >= comparTo || number < 0) {
-      console.wronger();
+      System.out.println("Wrong Value!");
       System.out.println("Please Try To Insert A Right Value");
       number = intGetter() - 1;
     }

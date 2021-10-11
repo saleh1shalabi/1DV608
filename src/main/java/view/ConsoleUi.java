@@ -5,7 +5,7 @@ package view;
 */
 public class ConsoleUi {
 
-  private Getter get = new Getter(this);
+  private Getter get = new Getter();
 
   /**
   * actions to be made in the program.
