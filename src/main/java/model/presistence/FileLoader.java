@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-
 import model.domain.Boat;
 import model.domain.Member;
 
 
-
+/**
+* the fileload class.
+*/
 public class FileLoader implements PersistenceInterface {
   
   private String pathToMembers = "./files/members.csv";
@@ -25,9 +26,12 @@ public class FileLoader implements PersistenceInterface {
   private String[] names = {};
   private int[] personalIds = {};
   private String[] memberIds = {};
-  private Map<String, ArrayList<Boat>> l = new HashMap<>();
+  private Map<String, ArrayList<Boat>> membersBoats = new HashMap<>();
 
 
+  /**
+  * reads the members from file.
+  */
   private void readMembers() {
     try (InputStream st = new FileInputStream(pathToMembers)) {
       Reader read = new InputStreamReader(st, StandardCharsets.UTF_8);
@@ -43,23 +47,27 @@ public class FileLoader implements PersistenceInterface {
       
         name = line[0];
         names = Arrays.copyOf(names, names.length + 1);
-        names[names.length -1] = name;
+        names[names.length - 1] = name;
     
         personalId = Integer.parseInt(line[1]);
         personalIds = Arrays.copyOf(personalIds, personalIds.length + 1);
-        personalIds[personalIds.length -1] = personalId;
+        personalIds[personalIds.length - 1] = personalId;
 
         memberId = line[2];
-        l.put(memberId, new ArrayList<Boat>());
+        membersBoats.put(memberId, new ArrayList<Boat>());
         memberIds = Arrays.copyOf(memberIds, memberIds.length + 1);
-        memberIds[memberIds.length -1] = memberId;
+        memberIds[memberIds.length - 1] = memberId;
       }
-      
+      nameReader.close();
     } catch (IOException e) {
       e.printStackTrace();
-    }
+    }    
+    
   }
 
+  /**
+  * reads the boats from file.
+  */
   private void readBoats() {
     try (InputStream st = new FileInputStream(pathToBoats)) {
       Reader read = new InputStreamReader(st, StandardCharsets.UTF_8);
@@ -76,12 +84,13 @@ public class FileLoader implements PersistenceInterface {
         memberId = line[0];
         boatType = line[1];
         length = Integer.parseInt(line[2]);
-        l.get(memberId).add(new Boat(boatType, length));
+        membersBoats.get(memberId).add(new Boat(boatType, length));
         
       }
+      nameReader.close();
     } catch (IOException e) {
       e.printStackTrace();
-    }
+    } 
 
   }
 
@@ -103,7 +112,7 @@ public class FileLoader implements PersistenceInterface {
   @Override
   public Map<String, ArrayList<Boat>> getBoats() {
     readBoats();
-    Map<String, ArrayList<Boat>> toRet = l;
+    Map<String, ArrayList<Boat>> toRet = membersBoats;
     return toRet;
   }
 
@@ -114,6 +123,9 @@ public class FileLoader implements PersistenceInterface {
     return memIdToRet;
   }
 
+  /**
+  * saves the boats to file.
+  */
   @Override
   public void saveBoats(ArrayList<Member> members) {
     FileWriter boatWriter = null;
@@ -148,6 +160,9 @@ public class FileLoader implements PersistenceInterface {
     }
   }
 
+  /**
+  * saves the members to file.
+  */
   @Override
   public void saveMembers(ArrayList<Member> members) {
     FileWriter memberWriter = null;

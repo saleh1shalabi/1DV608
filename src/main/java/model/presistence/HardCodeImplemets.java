@@ -3,7 +3,6 @@ package model.presistence;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import model.domain.Boat;
 import model.domain.Member;
 
@@ -15,7 +14,7 @@ public class HardCodeImplemets implements PersistenceInterface {
 
   private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
   private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
-  private String[] memberIds ={"A23FG5", "F55THJ", "WQ4YPO", "GGW14Y"};
+  private String[] memberIds = {"A23FG5", "F55THJ", "WQ4YPO", "GGW14Y"};
   private PersistenceInterface file = new FileLoader();
 
   /**
@@ -42,22 +41,27 @@ public class HardCodeImplemets implements PersistenceInterface {
     return perToRet;
   }
 
-
+  /**
+  * makes boats for members hard coded.
+  */
   @Override
   public Map<String, ArrayList<Boat>> getBoats() {
-    Map<String, ArrayList<Boat>> toRet = new HashMap<>();
+    
     ArrayList<Boat> boatSaleh = new ArrayList<>();
-    ArrayList<Boat> boatHanna = new ArrayList<>();
-    ArrayList<Boat> boatLuffy = new ArrayList<>();
-    ArrayList<Boat> boatVasa = new ArrayList<>();
-
     boatSaleh.add(new Boat("SailBoat", 45));
     boatSaleh.add(new Boat("Kayak", 10));
+
+    ArrayList<Boat> boatHanna = new ArrayList<>();
     boatHanna.add(new Boat("Motorsailer", 35));
+
+    ArrayList<Boat> boatLuffy = new ArrayList<>();
     boatLuffy.add(new Boat("SailBoat", 19));
     boatLuffy.add(new Boat("Motorsailer", 39));
+
+    ArrayList<Boat> boatVasa = new ArrayList<>();
     boatVasa.add(new Boat("Sailboat", 69));
 
+    Map<String, ArrayList<Boat>> toRet = new HashMap<>();
     
     toRet.put("A23FG5", boatSaleh);
     toRet.put("F55THJ", boatHanna);

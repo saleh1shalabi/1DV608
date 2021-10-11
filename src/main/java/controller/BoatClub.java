@@ -10,7 +10,7 @@ import view.ConsoleUi;
 public class BoatClub {
   private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
-  private DataController hc = new HardCodeController(memMan);
+  // private DataController hc = new HardCodeController(memMan);
   private DataController fc = new FileController(memMan);
   private BoatController boatCon = new BoatController(console);
   private MemberController memCon = new MemberController(memMan, boatCon, console);

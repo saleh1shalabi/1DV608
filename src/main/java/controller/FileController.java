@@ -2,14 +2,17 @@ package controller;
 
 import model.domain.MemberManager;
 import model.presistence.FileLoader;
-import model.presistence.PersistenceInterface;
 
+
+/**
+* to add data from files.
+*/
 public class FileController extends DataController {
-  public PersistenceInterface hc = new FileLoader();
+
 
   FileController(MemberManager memMan) {
     super(memMan);
-    super.hc = hc;
+    super.hc = new FileLoader();
   }
   
 }

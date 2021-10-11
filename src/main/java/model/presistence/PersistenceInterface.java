@@ -2,7 +2,6 @@ package model.presistence;
 
 import java.util.ArrayList;
 import java.util.Map;
-
 import model.domain.Boat;
 import model.domain.Member;
 
