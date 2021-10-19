@@ -1,6 +1,7 @@
 package controller;
 
 import model.domain.MemberManager;
+import model.domain.UserManager;
 import model.presistence.HardCodeImplemets;
 
 
@@ -9,8 +10,8 @@ import model.presistence.HardCodeImplemets;
 */
 public class HardCodeController extends DataController {
 
-  HardCodeController(MemberManager memMan) {
-    super(memMan);
+  HardCodeController(MemberManager memMan, UserManager userMan) {
+    super(memMan, userMan);
     super.hc = new HardCodeImplemets();
 
   }

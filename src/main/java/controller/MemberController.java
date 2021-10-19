@@ -48,15 +48,13 @@ public class MemberController {
   /**
   * Responsible changing member info.
   */
-  public void changeMember() {
-    Member mem = memberChooser();
+  public void changeMember(Member mem) {
     consoleMember.showSpecMemberInfo(mem);
     console.sureMsgChange();
     check = console.checker();
     if (check) {
       if (consoleMember.whatToChange() == 1) {
         mem.setName(consoleMember.firstNameGetter() + " " + consoleMember.lastNameGetter());
-
       } else {
         mem.setPersonalId(consoleMember.personalIdGetter());
       }

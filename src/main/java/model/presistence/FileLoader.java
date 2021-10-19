@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import model.domain.Boat;
 import model.domain.Member;
 
@@ -23,9 +25,14 @@ public class FileLoader implements PersistenceInterface {
   
   private String pathToMembers = "./files/members.csv";
   private String pathToBoats = "./files/boats.csv";
+  private String pathToUsers = "./files/users.csv";
+
   private String[] names = {};
   private int[] personalIds = {};
   private String[] memberIds = {};
+  private Map<String, String> users = new HashMap<>();
+
+
   private Map<String, ArrayList<Boat>> membersBoats = new HashMap<>();
 
 
@@ -198,4 +205,65 @@ public class FileLoader implements PersistenceInterface {
       }
     }
   }
+
+  public Map<String, String> getUsers() {
+    readUsers();
+    Map<String, String> us = users;
+    return us;
+
+  }
+  private void readUsers() {
+    try (InputStream st = new FileInputStream(pathToUsers)) {
+      Reader read = new InputStreamReader(st, StandardCharsets.UTF_8);
+      BufferedReader nameReader = new BufferedReader(read);
+      String[] line;
+      String sline;
+      String username;
+      String password;
+      
+      while ((sline = nameReader.readLine()) != null) {
+        line = sline.split(",");
+      
+        username = line[0];    
+        password = line[1];
+        users.put(username, password);
+      }
+      nameReader.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }    
+  }
+
+  public void saveUsers(Map<String,String> users) {
+    FileWriter userWriter = null;
+    try {
+      userWriter = new FileWriter(pathToUsers, StandardCharsets.UTF_8);
+      String username;
+      String password;
+
+      for (Entry<String, String> user : users.entrySet()) {
+        username = user.getKey();
+        password = user.getValue();
+        userWriter.append(username + "," + password + "\n");
+        }
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally { 
+      // this block of code is becuse the check style and findBugs 
+      if (userWriter != null) {
+        try {
+          userWriter.flush();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+        try {
+          userWriter.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
+
 }

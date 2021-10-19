@@ -23,4 +23,8 @@ public interface PersistenceInterface {
 
   public void saveMembers(ArrayList<Member> members);
 
+  public void saveUsers(Map<String, String> users);
+
+  public Map<String, String> getUsers();
+
 }

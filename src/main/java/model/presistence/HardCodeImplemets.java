@@ -90,5 +90,17 @@ public class HardCodeImplemets implements PersistenceInterface {
     
   }
 
+  @Override
+  public void saveUsers(Map<String, String> users) {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public Map<String, String> getUsers() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 
 }

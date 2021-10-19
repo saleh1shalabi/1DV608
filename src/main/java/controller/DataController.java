@@ -2,9 +2,12 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Map.Entry;
+
 import model.domain.Boat;
 import model.domain.Member;
 import model.domain.MemberManager;
+import model.domain.UserManager;
 import model.presistence.PersistenceInterface;
 
 
@@ -12,11 +15,16 @@ import model.presistence.PersistenceInterface;
 * abstract class to be data handler.
 */
 public abstract class DataController {
-  public MemberManager memMan;
-  public PersistenceInterface hc;
 
-  DataController(MemberManager memMan) {
+  
+  private MemberManager memMan;
+  private UserManager userMan;
+  protected PersistenceInterface hc;
+
+  DataController(MemberManager memMan, UserManager userMan) {
     this.memMan = memMan;
+    this.userMan = userMan;
+   
   }
 
 
@@ -44,9 +52,23 @@ public abstract class DataController {
     }
   }
 
+  
   public void save() {
+    hc.saveUsers(userMan.getUsers());
     hc.saveBoats(memMan.getMembers());
     hc.saveMembers(memMan.getMembers());
+  }
+
+
+  public void userAdder() {
+    Map<String,String> users = hc.getUsers();
+    String username;
+    String password;
+    for(Entry<String, String> g : users.entrySet()) {
+      username = g.getKey();
+      password = g.getValue();
+      userMan.addUser(username, password);
+    }
   }
   
 }

@@ -66,31 +66,40 @@ public class ConsoleUiMember {
     System.out.println("Year of Berth: (YYYY)");
     int year = get.intGetter();
     
-    while (String.valueOf(year).length() != 4 || year < 1900 || year > 2021 ) {
+    while (String.valueOf(year).length() != 4 || year < 1900 || year > 2021) {
       console.wronger();
-      System.out.println(" The Correct Format is (YYYY)");
+      System.out.println("The Correct Format is (YYYY)");
       year = get.intGetter();
     }
-    System.out.println("Month of Berth: (MM)");
+    System.out.println("Month of Berth:");
     int month = get.intGetter();
     while (month <= 0 || month > 12) {
       console.wronger();
-      System.out.println(" The Correct Format is (MM)");
       month = get.intGetter();
     }
     System.out.println("Day of Berth: (DD)");
     int day = get.intGetter();
-    while (day <= 0 || day > 31) {
-      console.wronger();
-      System.out.println(" The Correct Format is (DD)");
-      day = get.intGetter();
+    if (month == 2) {
+      while (day <= 0 || day > 29) {
+        console.wronger();
+        day = get.intGetter();
+      }
+    } else {
+      while (day <= 0 || day > 31) {
+        console.wronger();
+        day = get.intGetter();
+      }
     }
     String pers = String.valueOf(year);
     if (String.valueOf(month).length() == 1) {
       pers += "0" + String.valueOf(month);
+    } else {
+      pers += String.valueOf(month);
     }
     if (String.valueOf(day).length() == 1) {
       pers += "0" + String.valueOf(day);
+    } else {
+      pers += String.valueOf(day);
     }
     return Integer.parseInt(pers);
   }
