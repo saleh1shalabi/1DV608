@@ -62,14 +62,37 @@ public class ConsoleUiMember {
   * Responsible for viewing the personal id form.
   */
   public Integer personalIdGetter() {
-    System.out.println("Enter the members personal number: as (YYYYMMDD)");
-    Integer pers = get.intGetter();
-    while (String.valueOf(pers).length() != 8) {
+    
+    System.out.println("Year of Berth: (YYYY)");
+    int year = get.intGetter();
+    
+    while (String.valueOf(year).length() != 4 || year < 1900 || year > 2021 ) {
       console.wronger();
-      System.out.println(" The Correct Format is (YYYYMMDD)");
-      pers = get.intGetter();
+      System.out.println(" The Correct Format is (YYYY)");
+      year = get.intGetter();
     }
-    return pers;
+    System.out.println("Month of Berth: (MM)");
+    int month = get.intGetter();
+    while (month <= 0 || month > 12) {
+      console.wronger();
+      System.out.println(" The Correct Format is (MM)");
+      month = get.intGetter();
+    }
+    System.out.println("Day of Berth: (DD)");
+    int day = get.intGetter();
+    while (day <= 0 || day > 31) {
+      console.wronger();
+      System.out.println(" The Correct Format is (DD)");
+      day = get.intGetter();
+    }
+    String pers = String.valueOf(year);
+    if (String.valueOf(month).length() == 1) {
+      pers += "0" + String.valueOf(month);
+    }
+    if (String.valueOf(day).length() == 1) {
+      pers += "0" + String.valueOf(day);
+    }
+    return Integer.parseInt(pers);
   }
 
   public void chooseMessage() {

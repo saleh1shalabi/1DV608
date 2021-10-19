@@ -10,6 +10,9 @@ public class Member {
   private String name;
   private Integer personalId;
   private String memberId;
+  private int year;
+  private int month;
+  private int day;
   private ArrayList<Boat> boats = new ArrayList<>();
 
   /**
@@ -18,6 +21,10 @@ public class Member {
   public Member(String name, Integer personalId, String memberId) {
     this.name = name;
     this.personalId = personalId;
+    String s = String.valueOf(personalId);
+    this.year = Integer.parseInt(s.substring(0, 4));
+    this.month = Integer.parseInt(s.substring(5, 6));
+    this.day = Integer.parseInt(s.substring(7, 8));
     this.memberId = memberId;
   }
   
