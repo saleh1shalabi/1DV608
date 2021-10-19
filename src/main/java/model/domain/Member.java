@@ -27,7 +27,19 @@ public class Member {
     this.day = Integer.parseInt(s.substring(7, 8));
     this.memberId = memberId;
   }
+
+  public int getYear() {
+    return year;
+  }
   
+  public int getMonth() {
+    return month;
+  }
+
+  public int getDay() {
+    return day;
+  }
+
   public String getName() {
     return name;
   }
