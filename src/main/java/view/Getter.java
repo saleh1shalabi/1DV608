@@ -21,7 +21,7 @@ public class Getter {
         int nr = Integer.parseInt(input.nextLine());
         return nr;
       } catch (Exception e) {
-        System.out.println("Wrong Value!");
+        System.out.println("\nWrong Value!\n");
       }
     }
   }
@@ -46,8 +46,8 @@ public class Getter {
   public int compare(int comparTo) {
     int number = intGetter() - 1;
     while (number >= comparTo || number < 0) {
-      System.out.println("Wrong Value!");
-      System.out.println("Please Try To Insert A Right Value");
+      System.out.println("\nWrong Value!");
+      System.out.println("Please Try To Insert A Right Value\n");
       number = intGetter() - 1;
     }
     return number;

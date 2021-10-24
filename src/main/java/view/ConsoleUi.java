@@ -1,6 +1,16 @@
 package view;
 
 import java.util.Map;
+import java.util.Map.Entry;
+
+import model.domain.UserManager;
+import view.Choises.Boats;
+import view.Choises.First;
+import view.Choises.InLoged;
+import view.Choises.Lite;
+import view.Choises.Members;
+import view.Choises.Users;
+
 
 /**
 * user interface for the application.
@@ -8,45 +18,53 @@ import java.util.Map;
 public class ConsoleUi {
 
   private Getter get = new Getter();
+  private ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
+  private ConsoleUiMember consoleMem = new ConsoleUiMember(this);
 
-  /**
-  * actions to be made in the program.
-  */
-  public enum InLoged {
-    None, Members, Boats, Users, LogOut
-  }
 
-  public enum Lite {
-    Compact, Verbose, None, Back
-  }
-
-  public enum First {
-    LogIn, UseLite, Exit, None
-  }
-
-  public enum Members {
-    AddMember, ChangeMember, Compact, Verbose,
-    DeleteMember,  Back, None
-  }
-
-  public enum Boats {
-    RegisterBoat, ChangeBoat, DeleteBoat, Back, None
-  }
-
-  public enum Users {
-    AddUser, ChangeUser, DeleteUser, ViewUsers,
-    Back, None
-  }
 
   public void wlecomeMsg() {
-    System.out.println("Welcome to the Boat Club, choose what you want to do");
+    System.out.println("\nWelcome to the Boat Club, choose what you want to do\n");
   }
 
+
+  public void firstMenu() {
+    System.out.println("\n1. Log in");
+    System.out.println("2. Use lite");
+    System.out.println("0. Exit\n");
+  }
+
+  public First firstChoise() {
+    int nr = 10;
+    First g = null;
+    while (g == First.None || g == null) {
+      firstMenu();
+      nr = get.intGetter();
+      switch (nr) {
+        case 1:
+          g = First.LogIn;
+          break;
+        case 2:
+          g = First.UseLite;
+          break;
+        case 0:
+          g = First.Exit;
+          break;
+        default:
+          wronger();
+          g = First.None;
+          break;
+      }
+      break;
+    }
+    return g;
+  } 
+
   public void inlogedMenu() {
-    System.out.println("1. Members");
+    System.out.println("\n1. Members");
     System.out.println("2. Boats");
     System.out.println("3. Users");
-    System.out.println("0. Log Out");
+    System.out.println("0. Log Out\n");
   }
 
   public InLoged InlogedChoise() {
@@ -78,42 +96,10 @@ public class ConsoleUi {
     return g;
   } 
 
-  public void firstMenu() {
-    System.out.println("1. Log in");
-    System.out.println("2. Use lite");
-    System.out.println("0. Exit");
-  }
-
-  public First firstChoise() {
-    int nr = 10;
-    First g = null;
-    while (g == First.None || g == null) {
-      firstMenu();
-      nr = get.intGetter();
-      switch (nr) {
-        case 1:
-          g = First.LogIn;
-          break;
-        case 2:
-          g = First.UseLite;
-          break;
-        case 0:
-          g = First.Exit;
-          break;
-        default:
-          wronger();
-          g = First.None;
-          break;
-      }
-      break;
-    }
-    return g;
-  } 
-
   public void liteMenu() {
-    System.out.println("1. View Verbose list");
+    System.out.println("\n1. View Verbose list");
     System.out.println("2. View Compact list");
-    System.out.println("0. Back");
+    System.out.println("0. Back\n");
   }
 
   public Lite liteChoise() {
@@ -141,92 +127,72 @@ public class ConsoleUi {
     }
     return g;
   } 
-
-  /**
-  * shows the main menu.
-  */
-  public void showMenuMembers() {
-    System.out.println("1. Add a member");
-    System.out.println("2. Change a member information");
-    System.out.println("3. View Verbose list");
-    System.out.println("4. View Compact list");
-    System.out.println("5. Delete a member");
-    System.out.println("0. Back");
+  
+  public void UsersMenu() {
+    System.out.println("\n1. Add new User");
+    System.out.println("2. Delete a User");
+    System.out.println("3. View Users");
+    System.out.println("0. Back\n");
   }
-
-  /**
-  * Gets the chooes of the main menu.
-  */
-  public Members membersChoice() {
+  
+  public Users usersChoice() {
     int nr = 10;
-    Members g = null;
-    while (g == Members.None || g == null) {
-      showMenuMembers();
+    Users g = null;
+    while (g == Users.None || g == null) {
+      UsersMenu();
       nr = get.intGetter();
       switch (nr) {
         case 1:
-          g =  Members.AddMember;
+          g = Users.AddUser;
           break;
         case 2:
-          g = Members.ChangeMember;
-          break;
-        case 3: 
-          g = Members.Verbose;
-          break;
-        case 4: 
-          g = Members.Compact;
-          break;
-        case 5: 
-          g = Members.DeleteMember;
-          break;
-        case 0:
-          g = Members.Back;
-          break;
-        default:
-          wronger();
-          g = Members.None;
-          break;
-      }
-      break;
-    }
-    return g;
-  }
-
-  public void showMenuBoats() {
-    System.out.println("1. Add a Boat");
-    System.out.println("2. Change a Boat");
-    System.out.println("3. Delete a Boat");
-    System.out.println("0. Back");
-  }
-
-  public Boats BoatsChoise() {
-    int nr = 10;
-    Boats g = null;
-    while (g == Boats.None || g == null) {
-      showMenuBoats();
-      nr = get.intGetter();
-      switch (nr) {
-        case 1:
-          g = Boats.RegisterBoat;
-          break;
-        case 2:
-          g = Boats.ChangeBoat;
+        g = Users.DeleteUser;;
           break;
         case 3:
-          g = Boats.DeleteBoat;
+          g = Users.ViewUsers;
           break;
         case 0:
-          g = Boats.Back;
+          g = Users.Back;
           break;
         default:
           wronger();
-          g = Boats.None;
+          g = Users.None;
           break;
       }
       break;
     }
     return g;
-  } 
+  }
+
+
+  public String chooseUser(UserManager userMan) {
+    
+    System.out.println("\nChoose the user: ");
+    int count = 1; 
+    for (Entry<String, String> g : userMan.getUsers().entrySet()) {
+      System.out.println(count + ". " + g.getKey());
+      count++;
+    }
+    int choose = get.compare(userMan.getUsers().size());
+    count = 0;
+    String user = "";
+    for (Entry<String, String> g : userMan.getUsers().entrySet()) {
+      if (count == choose) {
+        user = g.getKey();
+      }
+      count++;
+    }
+    return user;
+  }
+
+  public void printUsers(Map<String, String> users) {
+    System.err.println("\nAll Users: \n");
+    int count = 1; 
+    for (Entry<String, String> g : users.entrySet()) {
+      System.out.println(count + ". " + g.getKey());
+      count++;
+    }
+  }  
 
 
   /**
@@ -246,18 +212,18 @@ public class ConsoleUi {
   }
   
   public void sureMsgDelete(String name) {
-    System.out.println("Are You Sure to delete " + name + " ? (Y/N)");
+    System.out.println("\nAre You Sure to delete " + name + " ? (Y/N)");
   }
   
   public void sureMsgChange() {
-    System.out.println("Do You want to Change? (Y/N)");
+    System.out.println("\nDo You want to Change? (Y/N)");
   }
   
   /**
   * exiting msg.
   */
   public void shutDownApp() {
-    System.out.println("...");
+    System.out.println("\n...");
     System.out.println("Exiting");
     System.out.println("Thanks for using our Program!");
   }
@@ -266,20 +232,36 @@ public class ConsoleUi {
   * error msg.
   */
   public void wronger() {
-    System.out.println("Wrong Value!");
+    System.out.println("\nWrong Value!");
   }
 
   public Map.Entry<String, String>  userInfo() {
-    System.out.println("Enter username: ");
+    System.out.println("\nEnter username: ");
     String username = get.stringGetter();
-    System.out.println("Enter password: ");
+    System.out.println("\nEnter password: ");
     String password = get.stringGetter();
     Map.Entry<String, String> g = Map.entry(username.toLowerCase(),password.toLowerCase());
     return g;
   }
 
   public void loginMsg() {
-    System.out.println("Loged in successfully!");
+    System.out.println("\nLoged in successfully!");
+  }
+
+
+  public Boats BoatsChoise() {
+    return consoleBoat.BoatsChoise();
+  }
+
+
+  public Members membersChoice() {
+    return consoleMem.membersChoice();
+  }
+
+
+  public String getString() {
+    System.out.println("Enter a name to Search");
+    return get.stringGetter();
   }
 
 }

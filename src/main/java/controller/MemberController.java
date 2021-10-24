@@ -1,5 +1,7 @@
 package controller;
 
+import model.SearchStrategy.ByName;
+import model.SearchStrategy.Search;
 import model.domain.Member;
 import model.domain.MemberManager;
 import view.ConsoleUi;
@@ -9,16 +11,19 @@ import view.ConsoleUiMember;
 * this is the controller of members.
 */
 public class MemberController {
-  private ConsoleUiMember consoleMember = new ConsoleUiMember();
+
   private ConsoleUi console;
+  private ConsoleUiMember consoleMember;
   private MemberManager memMan;
   private boolean check = false;
   private BoatController boatCon;
+  private Search search;
 
   MemberController(MemberManager memMan, BoatController boatCon, ConsoleUi console) {
     this.memMan = memMan;
     this.boatCon = boatCon;
     this.console = console;
+    this.consoleMember = new ConsoleUiMember(console);
 
   }
   
@@ -79,6 +84,11 @@ public class MemberController {
   
   public void viewCompactList() {
     consoleMember.showCompactList(memMan.getMembers());
+  }
+
+  public void find() {
+    search = new ByName();
+    consoleMember.showCompactList(search.getNames(memMan.getMembers(), console.getString()));
   }
 
 }

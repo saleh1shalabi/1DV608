@@ -9,6 +9,7 @@ import view.ConsoleUiBoat;
 * This is the controller of boats.
 */
 public class BoatController {
+  
   private ConsoleUi console;
   private ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
 

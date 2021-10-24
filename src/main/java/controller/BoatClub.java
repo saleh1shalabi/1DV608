@@ -2,27 +2,23 @@ package controller;
 
 import java.util.Map;
 import model.domain.Member;
-import model.domain.MemberManager;
-import model.domain.UserManager;
 import view.ConsoleUi;
-import view.ConsoleUi.Boats;
-import view.ConsoleUi.First;
-import view.ConsoleUi.InLoged;
-import view.ConsoleUi.Lite;
-import view.ConsoleUi.Members;
+import view.Choises.Boats;
+import view.Choises.First;
+import view.Choises.InLoged;
+import view.Choises.Lite;
+import view.Choises.Members;
+import view.Choises.Users;
+
 
 /**
 * This is the controller of the Boat club.
 */
 public class BoatClub {
   private ConsoleUi console = new ConsoleUi();
-  private MemberManager memMan = new MemberManager();
-  private UserManager userMan = new UserManager();
   // private DataController hc = new HardCodeController(memMan, userMan);    // HardCode used in grade 2  
-  private DataController fc = new FileController(memMan, userMan);
-  private userController userCon = new userController(userMan, console);
-  private BoatController boatCon = new BoatController(console);
-  private MemberController memCon = new MemberController(memMan, boatCon, console);
+  private Controller controller = new Controller();
+  
 
 
   /**
@@ -30,20 +26,20 @@ public class BoatClub {
    */
   public void startApp() {
     // hc.memAdder();    // hard code used in grade 2
-    fc.memAdder();
-    fc.userAdder();
+    controller.memAdder();
+    controller.userAdder();
     console.wlecomeMsg();
     firstMenu();
   }
 
   private void firstMenu() {
-    ConsoleUi.First g = null;
+    First g = null;
     while (g != First.Exit) {
       g = console.firstChoise();
       switch (g) {
         case LogIn:
           Map.Entry<String, String> acount = console.userInfo();
-          if (userCon.logInCheck(acount)) {
+          if (controller.logInCheck(acount)) {
             console.loginMsg();
             inlogedMenu();
           } else {
@@ -54,7 +50,7 @@ public class BoatClub {
           liteUse();
           break;
         case Exit:
-          fc.save();
+          controller.save();
           console.shutDownApp();
           break;
         default:
@@ -63,7 +59,7 @@ public class BoatClub {
   }
 
   private void inlogedMenu() {
-    ConsoleUi.InLoged g = null;
+    InLoged g = null;
     while (g != InLoged.LogOut) {
       g = console.InlogedChoise();
       switch (g) {
@@ -74,6 +70,7 @@ public class BoatClub {
           boatMenu();
           break;
         case Users:
+          userMenu();
           break;
         case LogOut:
           break;
@@ -82,16 +79,39 @@ public class BoatClub {
     }
   }
 
+  private void userMenu() {
+    Users g = null;
+    String user;
+    while (g != Users.Back) {
+      g = console.usersChoice();
+      switch (g) {
+        case AddUser:
+          controller.addNewUser();
+          break;
+        case DeleteUser:
+          user = controller.userChooser(); 
+          controller.removeUser(user);
+          break;
+        case ViewUsers:
+          controller.viewUsers();
+        case Back:
+          break;
+        default:
+      }
+    }
+  }
+
   private void liteUse() {
-    ConsoleUi.Lite g = null;
+    Lite g = null;
     while (g != Lite.Back) {
       g = console.liteChoise();
       switch (g) {
         case Verbose:
-          memCon.viewVerboseList();
+          // controller.viewVerboseList();
+          controller.find();
           break;
         case Compact:
-          memCon.viewCompactList();
+          controller.viewCompactList();
           break;
         case Back:
           break;
@@ -101,26 +121,26 @@ public class BoatClub {
   }
 
   private void memberMenu() {
-    ConsoleUi.Members g = null;
+    Members g = null;
     Member mem;
     while (g != Members.Back) {
       g = console.membersChoice();
       switch (g) {
         case AddMember:
-          memCon.memberAdder();
+          controller.memberAdder();
           break;
         case ChangeMember:
-          mem = memCon.memberChooser();
-          memCon.changeMember(mem);
+          mem = controller.memberChooser();
+          controller.changeMember(mem);
           break;
         case Verbose:
-          memCon.viewVerboseList();
+          controller.viewVerboseList();
           break;
         case Compact:
-          memCon.viewCompactList();
+          controller.viewCompactList();
           break;
         case DeleteMember:
-          memCon.removeMember();
+          controller.removeMember();
           break;
         case Back:
           break;
@@ -131,22 +151,22 @@ public class BoatClub {
 
   private void boatMenu() {
 
-    ConsoleUi.Boats g = null;
+    Boats g = null;
     Member mem;
     while (g != Boats.Back) {
       g = console.BoatsChoise();
       switch (g) {
         case RegisterBoat:
-          mem = memCon.memberChooser();
-          boatCon.registerBoat(mem);
+          mem = controller.memberChooser();
+          controller.registerBoat(mem);
           break;
         case ChangeBoat:
-          mem = memCon.memberChooser();
-          boatCon.changeBoat(mem);
+          mem = controller.memberChooser();
+          controller.changeBoat(mem);
           break;
         case DeleteBoat:
-          mem = memCon.memberChooser();
-          boatCon.removeBoat(mem);
+          mem = controller.memberChooser();
+          controller.removeBoat(mem);
           break;
         case Back:
           break;

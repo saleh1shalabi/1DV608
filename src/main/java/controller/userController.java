@@ -30,5 +30,20 @@ public class userController {
     Map.Entry<String, String> acount = console.userInfo();
     userMan.addUser(acount.getKey(), acount.getValue());
   }
-  
+
+  public String chooseUser(UserManager userMan) {
+    return console.chooseUser(userMan);
+  }
+
+  public void removeUser(String user) {
+    console.sureMsgDelete(user);
+    if (console.checker()) {
+      userMan.removeUser(user);
+    }
+  }
+
+  public void viewUsers() {
+    console.printUsers(userMan.getUsers());
+  }
+
 }

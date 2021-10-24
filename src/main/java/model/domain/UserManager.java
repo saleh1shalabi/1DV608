@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class UserManager {
 
-  private Map<String,String> users = new HashMap();
+  private Map<String,String> users = new HashMap<>();
 
   public Map<String,String> getUsers() {
     return users;
@@ -18,4 +18,5 @@ public class UserManager {
   public void addUser(String username, String password) {
     users.put(username, password);
   }
+
 }

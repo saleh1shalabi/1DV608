@@ -2,6 +2,7 @@ package view;
 
 import model.domain.Boat;
 import model.domain.Member;
+import view.Choises.Boats;
 
 /**
 * userinterface for boats and all its outputs.
@@ -9,6 +10,43 @@ import model.domain.Member;
 public class ConsoleUiBoat {
 
   private Getter get = new Getter();
+
+  public void showMenuBoats() {
+    System.out.println("1. Add a Boat");
+    System.out.println("2. Change a Boat");
+    System.out.println("3. Delete a Boat");
+    System.out.println("0. Back");
+  }
+
+  public Boats BoatsChoise() {
+    int nr = 10;
+    Choises.Boats g = null;
+    while (g == Boats.None || g == null) {
+      showMenuBoats();
+      nr = get.intGetter();
+      switch (nr) {
+        case 1:
+          g = Boats.RegisterBoat;
+          break;
+        case 2:
+          g = Boats.ChangeBoat;
+          break;
+        case 3:
+          g = Boats.DeleteBoat;
+          break;
+        case 0:
+          g = Boats.Back;
+          break;
+        default:
+          System.out.println("Wrong Value!");
+          g = Boats.None;
+          break;
+      }
+      break;
+    }
+    return g;
+  } 
+
 
   /**
   * shows and gets the type chosen.
