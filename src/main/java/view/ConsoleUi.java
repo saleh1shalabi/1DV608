@@ -165,4 +165,24 @@ public class ConsoleUi {
     return consoleUser.searchChoies();
   }
 
+
+  public int getYear() {
+    return consoleMem.getYear();
+  }
+
+
+  public int getMonth() {
+    return consoleMem.getMonth();
+  }
+
+
+  public int getAge() {
+    return consoleMem.getAge();
+  }
+
+
+  public String getBoatType() {
+    return consoleBoat.chooseBoatType();
+  }
+
 }

@@ -3,7 +3,10 @@ package controller;
 import java.util.ArrayList;
 
 import model.SearchStrategy.ByAge;
+import model.SearchStrategy.ByBoat;
+import model.SearchStrategy.ByMonth;
 import model.SearchStrategy.ByName;
+import model.SearchStrategy.ByYear;
 import model.SearchStrategy.Search;
 import model.domain.Member;
 import model.domain.MemberManager;
@@ -31,7 +34,7 @@ public class MemberController {
   }
   
   public Member memberChooser() {
-    int memIndex = consoleMember.chooseMember(memMan);
+    int memIndex = consoleMember.chooseMember(memMan.getMembers());
     return memMan.getMembers().get(memIndex);
   }
 
@@ -89,8 +92,21 @@ public class MemberController {
     consoleMember.showCompactList(memMan.getMembers());
   }
 
-  private void getFounded(ArrayList<Member> allMembers) { 
-    String toSearch = console.getString();
+  private void getFounded(ArrayList<Member> allMembers, String s) { 
+    String toSearch = "";
+    if (s.equals("name")) {
+      toSearch = console.getString();
+    } else if (s.equals("age")) {
+      toSearch = String.valueOf(console.getAge());
+    } else if (s.equals("month")) {
+      toSearch = String.valueOf(console.getMonth());
+    } else if (s.equals("year")) {
+      toSearch = String.valueOf(console.getYear());
+    } else if (s.equals("boat")) {
+      toSearch = console.getBoatType();
+    }
+    System.out.println(toSearch);
+
     ArrayList<Member> members = search.find(allMembers, toSearch);
     if (members.size() == 0) {
       console.noMatch(toSearch);
@@ -101,13 +117,28 @@ public class MemberController {
   }
   public void findByName(ArrayList<Member> members) {
     search = new ByName();
-    getFounded(members);
+    getFounded(members, "name");
     
+  }
+
+  public void findByYear(ArrayList<Member> members) {
+    search = new ByYear();
+    getFounded(members, "year");
   }
 
   public void findByAge(ArrayList<Member> members) {
     search = new ByAge();
-    getFounded(members);
+    getFounded(members, "age");
+  }
+
+  public void findByMonth(ArrayList<Member> members) {
+    search = new ByMonth();
+    getFounded(members, "month");
+  }
+
+  public void findByBoat(ArrayList<Member> members) {
+    search = new ByBoat();
+    getFounded(members, "boat");
   }
 
 }

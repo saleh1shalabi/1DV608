@@ -91,4 +91,17 @@ public class Controller {
   public void findByAge() {
     memCon.findByAge(memMan.getMembers());
   }
+
+  public void findByMonth() {
+    memCon.findByMonth(memMan.getMembers());
+
+  }
+
+  public void findByYear() {
+    memCon.findByYear(memMan.getMembers());
+  }
+
+  public void findByBoat() {
+    memCon.findByBoat(memMan.getMembers());
+  }
 }

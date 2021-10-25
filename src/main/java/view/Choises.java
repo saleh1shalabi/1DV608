@@ -32,7 +32,7 @@ public class Choises {
   }
 
   public enum Search {
-    Name, Age, Month, Back, None
+    Name, Age, Month, Year, Boat, Back, None
   }
   
 }

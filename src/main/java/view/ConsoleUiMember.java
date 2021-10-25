@@ -3,7 +3,6 @@ package view;
 import java.util.ArrayList;
 import model.domain.Boat;
 import model.domain.Member;
-import model.domain.MemberManager;
 import view.Choises.Members;
 
 /**
@@ -72,14 +71,14 @@ public class ConsoleUiMember {
   /**
   * Responsible for viewing the members for the user so they can pick a member.
   */
-  public int chooseMember(MemberManager memMan) {
+  public int chooseMember(ArrayList<Member> members) {
     chooseMessage();
     int count = 1; 
-    for (Member mem : memMan.getMembers()) {
+    for (Member mem :members) {
       System.out.println(count + ". " + mem.getName());
       count++;
     }
-    int choose = get.compare(memMan.getMembers().size());
+    int choose = get.compare(members.size());
     return choose;
 
   }
@@ -113,11 +112,7 @@ public class ConsoleUiMember {
     return " " + lastName;
   }
 
-  /**
-  * Responsible for viewing the personal id form.
-  */
-  public Integer personalIdGetter() {
-    
+  public int getYear() {
     System.out.println("\nYear of Berth: (YYYY)");
     int year = get.intGetter();
     
@@ -126,12 +121,21 @@ public class ConsoleUiMember {
       System.out.println("\nThe Correct Format is (YYYY)");
       year = get.intGetter();
     }
+    return year;
+  }
+
+  public int getMonth() {
     System.out.println("\nMonth of Berth:");
     int month = get.intGetter();
     while (month <= 0 || month > 12) {
       console.wronger();
       month = get.intGetter();
     }
+    return month;
+
+  }
+
+  public int getDay(int month) {
     System.out.println("\nDay of Berth: (DD)");
     int day = get.intGetter();
     if (month == 2) {
@@ -145,6 +149,30 @@ public class ConsoleUiMember {
         day = get.intGetter();
       }
     }
+    return day;
+  }
+
+  public int getAge() {
+    System.out.println("\nAge of Member:");
+    int age = get.intGetter();
+    while (age <= 0 || age > 100) {
+      console.wronger();
+      age = get.intGetter();
+    }
+    return age;
+  }
+  /**
+  * Responsible for viewing the personal id form.
+  */
+  public Integer personalIdGetter() {
+    
+    
+    int year = getYear();
+    
+    int month = get.intGetter();
+    
+    int day = getDay(month);
+    
     String pers = String.valueOf(year);
     if (String.valueOf(month).length() == 1) {
       pers += "0" + String.valueOf(month);
@@ -240,5 +268,6 @@ public class ConsoleUiMember {
   public void addBoat(String mem) {
     System.out.println("\nAdd Boats to " + mem + " ? (Y/N)");
   }
+ 
 
 }

@@ -129,6 +129,8 @@ public class ConsoleUiUser {
     System.out.println("\n1. Search by Name");
     System.out.println("2. Search by Age");
     System.out.println("3. Search by month of berth");
+    System.out.println("4. Search by year of berth");
+    System.out.println("5. Search for members with a special boatType");
     System.out.println("0. Back\n");
   }
 
@@ -149,6 +151,12 @@ public class ConsoleUiUser {
         case 3:
           g = Search.Month;
           break;
+        case 4:
+          g = Search.Year;
+          break;
+        case 5:
+         g = Search.Boat;
+         break;
         case 0:
           g = Search.Back;
           break;
@@ -189,8 +197,5 @@ public class ConsoleUiUser {
       System.out.println(count + ". " + g.getKey());
       count++;
     }
-  }  
-
-
-  
+  }    
 }

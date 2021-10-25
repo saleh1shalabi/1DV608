@@ -140,11 +140,14 @@ public class BoatClub {
     
           break;
         case Month:
-
+          controller.findByMonth();
           break;
-        // case Compact:
-        //   controller.viewCompactList();
-        //   break;
+        case Year:
+          controller.findByYear();
+          break;
+        case Boat:
+          controller.findByBoat();
+          break;
         // case DeleteMember:
         //   controller.removeMember();
           // break;
