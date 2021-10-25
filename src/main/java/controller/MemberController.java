@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.ArrayList;
+
+import model.SearchStrategy.ByAge;
 import model.SearchStrategy.ByName;
 import model.SearchStrategy.Search;
 import model.domain.Member;
@@ -59,7 +62,7 @@ public class MemberController {
     check = console.checker();
     if (check) {
       if (consoleMember.whatToChange() == 1) {
-        mem.setName(consoleMember.firstNameGetter() + " " + consoleMember.lastNameGetter());
+        mem.setName(consoleMember.firstNameGetter() + consoleMember.lastNameGetter());
       } else {
         mem.setPersonalId(consoleMember.personalIdGetter());
       }
@@ -86,9 +89,25 @@ public class MemberController {
     consoleMember.showCompactList(memMan.getMembers());
   }
 
-  public void find() {
+  private void getFounded(ArrayList<Member> allMembers) { 
+    String toSearch = console.getString();
+    ArrayList<Member> members = search.find(allMembers, toSearch);
+    if (members.size() == 0) {
+      console.noMatch(toSearch);
+    } else {
+    consoleMember.showVerboseList(members);
+    }
+    search.clearList();
+  }
+  public void findByName(ArrayList<Member> members) {
     search = new ByName();
-    consoleMember.showCompactList(search.getNames(memMan.getMembers(), console.getString()));
+    getFounded(members);
+    
+  }
+
+  public void findByAge(ArrayList<Member> members) {
+    search = new ByAge();
+    getFounded(members);
   }
 
 }

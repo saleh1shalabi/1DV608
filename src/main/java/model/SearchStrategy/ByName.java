@@ -6,7 +6,7 @@ import model.domain.Member;
 public class ByName implements Search {
   
   @Override
-  public ArrayList<Member> getNames(ArrayList<Member> members, String name) {
+  public ArrayList<Member> find(ArrayList<Member> members, String name) {
     for (Member mem : members) {
       if (mem.getName().equals(name)) {
         found.add(mem);
@@ -16,5 +16,11 @@ public class ByName implements Search {
     }
     return found;
   }
+
+  @Override
+  public void clearList() {
+    found.clear();
+  }
+  
 
 }

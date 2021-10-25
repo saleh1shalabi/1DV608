@@ -11,7 +11,7 @@ public class ConsoleUiBoat {
 
   private Getter get = new Getter();
 
-  public void showMenuBoats() {
+  private void showMenuBoats() {
     System.out.println("1. Add a Boat");
     System.out.println("2. Change a Boat");
     System.out.println("3. Delete a Boat");

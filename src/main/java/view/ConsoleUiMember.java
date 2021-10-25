@@ -21,7 +21,7 @@ public class ConsoleUiMember {
   /**
   * shows the main menu.
   */
-  public void showMenuMembers() {
+  private void showMenuMembers() {
     System.out.println("1. Add a member");
     System.out.println("2. Change a member information");
     System.out.println("3. View Verbose list");
@@ -110,7 +110,7 @@ public class ConsoleUiMember {
   public String lastNameGetter() {
     System.out.println("\nEnter The new Members last name: \n");
     String lastName = get.stringGetter();
-    return lastName;
+    return " " + lastName;
   }
 
   /**

@@ -84,7 +84,11 @@ public class Controller {
     userCon.userAdder();
   }
 
-  public void find() {
-    memCon.find();
+  public void findByName() {
+    memCon.findByName(memMan.getMembers());
+  }
+
+  public void findByAge() {
+    memCon.findByAge(memMan.getMembers());
   }
 }

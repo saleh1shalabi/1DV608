@@ -9,9 +9,8 @@ public interface Search {
   ConsoleUi console = new ConsoleUi();
   ArrayList<Member> found = new ArrayList<>();
 
-  ArrayList<Member> getNames(ArrayList<Member> members, String string);
+  ArrayList<Member> find(ArrayList<Member> members, String string);
 
-
-
+  void clearList();
   
 }

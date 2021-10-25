@@ -8,6 +8,7 @@ import view.Choises.First;
 import view.Choises.InLoged;
 import view.Choises.Lite;
 import view.Choises.Members;
+import view.Choises.Search;
 import view.Choises.Users;
 
 
@@ -61,13 +62,16 @@ public class BoatClub {
   private void inlogedMenu() {
     InLoged g = null;
     while (g != InLoged.LogOut) {
-      g = console.InlogedChoise();
+      g = console.inlogedChoise();
       switch (g) {
         case Members:
           memberMenu();
           break;
         case Boats:
           boatMenu();
+          break;
+        case Search:
+          searchMenu();
           break;
         case Users:
           userMenu();
@@ -107,12 +111,43 @@ public class BoatClub {
       g = console.liteChoise();
       switch (g) {
         case Verbose:
-          // controller.viewVerboseList();
-          controller.find();
+          controller.viewVerboseList();
           break;
         case Compact:
           controller.viewCompactList();
           break;
+        case Search:
+          searchMenu();
+          break;
+        case Back:
+          break;
+        default:
+      }
+    }
+  }
+
+
+  private void searchMenu() {
+    Search g = null;
+    while (g != Search.Back) {
+      g = console.searchChoies();
+      switch (g) {
+        case Name:
+            controller.findByName();
+          break;
+        case Age:
+          controller.findByAge();
+    
+          break;
+        case Month:
+
+          break;
+        // case Compact:
+        //   controller.viewCompactList();
+        //   break;
+        // case DeleteMember:
+        //   controller.removeMember();
+          // break;
         case Back:
           break;
         default:
