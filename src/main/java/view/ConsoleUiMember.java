@@ -75,7 +75,7 @@ public class ConsoleUiMember {
   public int chooseMember(ArrayList<Member> members) {
     chooseMessage();
     int count = 1; 
-    for (Member mem :members) {
+    for (Member mem : members) {
       System.out.println(count + ". " + mem.getName());
       count++;
     }

@@ -13,10 +13,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import model.domain.Boat;
 import model.domain.Member;
-
 
 /**
 * the fileload class.
@@ -104,14 +102,14 @@ public class FileLoader implements PersistenceInterface {
   @Override
   public String[] getNames() {
     readMembers();
-    String[] namesToRet = names;
+    String[] namesToRet = Arrays.copyOf(names, names.length);
     return namesToRet;
   }
 
 
   @Override
   public int[] getPersonalIds() {
-    int[] perToRet = personalIds;
+    int[] perToRet = Arrays.copyOf(personalIds, personalIds.length);
     return perToRet;
   }
 
@@ -119,14 +117,14 @@ public class FileLoader implements PersistenceInterface {
   @Override
   public Map<String, ArrayList<Boat>> getBoats() {
     readBoats();
-    Map<String, ArrayList<Boat>> toRet = membersBoats;
+    Map<String, ArrayList<Boat>> toRet =  new HashMap<>(membersBoats);
     return toRet;
   }
 
 
   @Override
   public String[] getMemberIds() {
-    String[] memIdToRet = memberIds;
+    String[] memIdToRet = Arrays.copyOf(memberIds, memberIds.length);
     return memIdToRet;
   }
 
@@ -206,12 +204,19 @@ public class FileLoader implements PersistenceInterface {
     }
   }
 
+  /**
+  * gets the users from file.
+  */
   public Map<String, String> getUsers() {
     readUsers();
-    Map<String, String> us = users;
+    Map<String, String> us = new HashMap<>(users);
     return us;
 
   }
+
+  /**
+  * read the users from file.
+  */
   private void readUsers() {
     try (InputStream st = new FileInputStream(pathToUsers)) {
       Reader read = new InputStreamReader(st, StandardCharsets.UTF_8);
@@ -234,7 +239,10 @@ public class FileLoader implements PersistenceInterface {
     }    
   }
 
-  public void saveUsers(Map<String,String> users) {
+  /**
+  * saves the users to the file.
+  */
+  public void saveUsers(Map<String, String> users) {
     FileWriter userWriter = null;
     try {
       userWriter = new FileWriter(pathToUsers, StandardCharsets.UTF_8);
@@ -245,7 +253,7 @@ public class FileLoader implements PersistenceInterface {
         username = user.getKey();
         password = user.getValue();
         userWriter.append(username + "," + password + "\n");
-        }
+      }
     } catch (IOException e) {
       e.printStackTrace();
     } finally { 

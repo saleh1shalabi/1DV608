@@ -65,7 +65,8 @@ public class Member {
   }
 
   public ArrayList<Boat> getBoats() {
-    return boats;
+    ArrayList<Boat> toRet = new ArrayList<>(boats);
+    return toRet;
   }
 
   public void addBoat(Boat boat) {

@@ -1,7 +1,6 @@
 package view;
 
 import java.util.Map;
-
 import model.domain.UserManager;
 import view.Choises.Boats;
 import view.Choises.First;
@@ -115,7 +114,7 @@ public class ConsoleUi {
     String username = get.stringGetter();
     System.out.println("\nEnter password: ");
     String password = get.stringGetter();
-    Map.Entry<String, String> g = Map.entry(username.toLowerCase(),password.toLowerCase());
+    Map.Entry<String, String> g = Map.entry(username.toLowerCase(), password.toLowerCase());
     return g;
   }
 

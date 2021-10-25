@@ -8,8 +8,8 @@ import model.domain.Member;
 * Search by a chosen boat.
 */
 public class ByBoat implements Search {
-  private ArrayList<Member> found = new ArrayList<>();
 
+  private ArrayList<Member> found = new ArrayList<>();
 
   @Override
   public ArrayList<Member> find(ArrayList<Member> members, String string) {
@@ -22,7 +22,8 @@ public class ByBoat implements Search {
         }
       }
     }
-    return found;
+    ArrayList<Member> founded = new ArrayList<>(found);
+    return founded;
   }
 
   @Override

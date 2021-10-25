@@ -1,7 +1,6 @@
 package controller;
 
 import java.util.ArrayList;
-
 import model.domain.Member;
 import model.domain.MemberManager;
 import model.search.ByAge;

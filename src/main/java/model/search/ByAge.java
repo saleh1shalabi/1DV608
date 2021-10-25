@@ -19,7 +19,8 @@ public class ByAge implements Search {
         found.add(mem);
       }
     }
-    return found;
+    ArrayList<Member> founded = new ArrayList<>(found);
+    return founded;
   }
 
 

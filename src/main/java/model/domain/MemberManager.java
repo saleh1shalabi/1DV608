@@ -1,6 +1,7 @@
 package model.domain;
 
 import java.util.ArrayList;
+
 /**
 * Responsible for managing members.
 */
@@ -18,7 +19,8 @@ public class MemberManager {
 
 
   public  ArrayList<Member> getMembers() {
-    return members;
+    ArrayList<Member> toRet = new ArrayList<>(members);
+    return toRet;
   }
 
   /**

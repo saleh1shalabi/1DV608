@@ -1,6 +1,7 @@
 package model.presistence;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import model.domain.Boat;
@@ -29,7 +30,7 @@ public class HardCodeImplemets implements PersistenceInterface {
   */
   @Override
   public String[] getNames() {
-    String[] nameToRet = names;
+    String[] nameToRet = Arrays.copyOf(names, names.length);
     return nameToRet;
   }
 
@@ -37,7 +38,7 @@ public class HardCodeImplemets implements PersistenceInterface {
   * returns persId array.
   */
   public int[] getPersonalIds() {
-    int[] perToRet = personalIds;
+    int[] perToRet = Arrays.copyOf(personalIds, personalIds.length);
     return perToRet;
   }
 
@@ -74,7 +75,7 @@ public class HardCodeImplemets implements PersistenceInterface {
 
   @Override
   public String[] getMemberIds() {
-    String[] memIdsToRet = memberIds;
+    String[] memIdsToRet = Arrays.copyOf(memberIds, memberIds.length);
     return memIdsToRet;
   }
 

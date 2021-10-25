@@ -3,7 +3,6 @@ package controller;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import model.domain.Boat;
 import model.domain.Member;
 import model.domain.MemberManager;
@@ -67,7 +66,7 @@ public abstract class DataController {
   * Responsible adding the users.
   */
   public void userAdder() {
-    Map<String,String> users = hc.getUsers();
+    Map<String, String> users = hc.getUsers();
     String username;
     String password;
     for (Entry<String, String> g : users.entrySet()) {
