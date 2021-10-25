@@ -2,7 +2,6 @@ package controller;
 
 import java.util.Map;
 import model.domain.Member;
-import view.ConsoleUi;
 import view.Choises.Boats;
 import view.Choises.First;
 import view.Choises.InLoged;
@@ -10,6 +9,7 @@ import view.Choises.Lite;
 import view.Choises.Members;
 import view.Choises.Search;
 import view.Choises.Users;
+import view.ConsoleUi;
 
 
 /**
@@ -17,7 +17,7 @@ import view.Choises.Users;
 */
 public class BoatClub {
   private ConsoleUi console = new ConsoleUi();
-  // private DataController hc = new HardCodeController(memMan, userMan);    // HardCode used in grade 2  
+  // private DataController hc = new HardCodeController(memMan, userMan);//HardCode used in grade2  
   private Controller controller = new Controller();
   
 
@@ -33,6 +33,10 @@ public class BoatClub {
     firstMenu();
   }
 
+
+  /**
+  * first menu of choises.
+  */
   private void firstMenu() {
     First g = null;
     while (g != First.Exit) {
@@ -59,6 +63,9 @@ public class BoatClub {
     }
   }
 
+  /**
+  * inloged menu.
+  */
   private void inlogedMenu() {
     InLoged g = null;
     while (g != InLoged.LogOut) {
@@ -83,6 +90,9 @@ public class BoatClub {
     }
   }
 
+  /**
+  * users choises.
+  */
   private void userMenu() {
     Users g = null;
     String user;
@@ -98,6 +108,7 @@ public class BoatClub {
           break;
         case ViewUsers:
           controller.viewUsers();
+          break;
         case Back:
           break;
         default:
@@ -105,6 +116,9 @@ public class BoatClub {
     }
   }
 
+  /**
+  * outloged menu.
+  */
   private void liteUse() {
     Lite g = null;
     while (g != Lite.Back) {
@@ -126,14 +140,16 @@ public class BoatClub {
     }
   }
 
-
+  /**
+  * search menu.
+  */
   private void searchMenu() {
     Search g = null;
     while (g != Search.Back) {
       g = console.searchChoies();
       switch (g) {
         case Name:
-            controller.findByName();
+          controller.findByName();
           break;
         case Age:
           controller.findByAge();
@@ -158,6 +174,10 @@ public class BoatClub {
     }
   }
 
+
+  /**
+  * menu of what to do with member.
+  */
   private void memberMenu() {
     Members g = null;
     Member mem;
@@ -187,12 +207,16 @@ public class BoatClub {
     }
   }
 
+
+  /**
+  * boat menu.
+  */
   private void boatMenu() {
 
     Boats g = null;
     Member mem;
     while (g != Boats.Back) {
-      g = console.BoatsChoise();
+      g = console.boatsChoise();
       switch (g) {
         case RegisterBoat:
           mem = controller.memberChooser();

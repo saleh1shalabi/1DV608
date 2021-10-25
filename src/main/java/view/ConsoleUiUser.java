@@ -8,10 +8,17 @@ import view.Choises.Lite;
 import view.Choises.Search;
 import view.Choises.Users;
 
+
+/**
+* user interface for the user.
+*/
 public class ConsoleUiUser {
 
   private Getter get = new Getter();
 
+  /**
+  * inloged menu.
+  */
   private void inlogedMenu() {
     System.out.println("\n1. Members");
     System.out.println("2. Boats");
@@ -20,6 +27,10 @@ public class ConsoleUiUser {
     System.out.println("0. Log Out\n");
   }
 
+
+  /**
+  *inloged choise.
+  */
   public InLoged inlogedChoise() {
     int nr = 10;
     InLoged g = null;
@@ -52,6 +63,10 @@ public class ConsoleUiUser {
     return g;
   } 
 
+
+  /**
+  * outloged menu.
+  */
   private void liteMenu() {
     System.out.println("\n1. View Verbose list");
     System.out.println("2. View Compact list");
@@ -59,6 +74,9 @@ public class ConsoleUiUser {
     System.out.println("0. Back\n");
   }
 
+  /**
+  * outloged choise.
+  */
   public Lite liteChoise() {
     int nr = 10;
     Lite g = null;
@@ -88,25 +106,31 @@ public class ConsoleUiUser {
     return g;
   } 
   
-  private void UsersMenu() {
+  /**
+  * user menu.
+  */
+  private void usersMenu() {
     System.out.println("\n1. Add new User");
     System.out.println("2. Delete a User");
     System.out.println("3. View Users");
     System.out.println("0. Back\n");
   }
   
+  /**
+  * user choise.
+  */
   public Users usersChoice() {
     int nr = 10;
     Users g = null;
     while (g == Users.None || g == null) {
-      UsersMenu();
+      usersMenu();
       nr = get.intGetter();
       switch (nr) {
         case 1:
           g = Users.AddUser;
           break;
         case 2:
-        g = Users.DeleteUser;;
+          g = Users.DeleteUser;;
           break;
         case 3:
           g = Users.ViewUsers;
@@ -125,6 +149,9 @@ public class ConsoleUiUser {
   }
 
 
+  /**
+  * search menu.
+  */
   private void searchMenu() {
     System.out.println("\n1. Search by Name");
     System.out.println("2. Search by Age");
@@ -134,7 +161,9 @@ public class ConsoleUiUser {
     System.out.println("0. Back\n");
   }
 
-
+  /**
+  * search choise.
+  */
   public Search searchChoies() {
     int nr = 10;
     Search g = null;
@@ -146,7 +175,7 @@ public class ConsoleUiUser {
           g = Search.Name;
           break;
         case 2:
-        g = Search.Age;
+          g = Search.Age;
           break;
         case 3:
           g = Search.Month;
@@ -155,8 +184,8 @@ public class ConsoleUiUser {
           g = Search.Year;
           break;
         case 5:
-         g = Search.Boat;
-         break;
+          g = Search.Boat;
+          break;
         case 0:
           g = Search.Back;
           break;
@@ -170,6 +199,9 @@ public class ConsoleUiUser {
     return g;
   }
 
+  /**
+  * shows the users and return one to delete.
+  */
   public String chooseUser(UserManager userMan) {
     
     System.out.println("\nChoose the user: ");
@@ -190,6 +222,10 @@ public class ConsoleUiUser {
     return user;
   }
 
+
+  /**
+  * print out the users.
+  */
   public void printUsers(Map<String, String> users) {
     System.err.println("\nAll Users: \n");
     int count = 1; 

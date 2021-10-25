@@ -17,6 +17,7 @@ public class ConsoleUiMember {
   public ConsoleUiMember(ConsoleUi console) {
     this.console = console;
   }
+
   /**
   * shows the main menu.
   */
@@ -112,6 +113,9 @@ public class ConsoleUiMember {
     return " " + lastName;
   }
 
+  /**
+  * gets the year of the berth.
+  */
   public int getYear() {
     System.out.println("\nYear of Berth: (YYYY)");
     int year = get.intGetter();
@@ -124,6 +128,9 @@ public class ConsoleUiMember {
     return year;
   }
 
+  /**
+  * gets the month of the berth.
+  */
   public int getMonth() {
     System.out.println("\nMonth of Berth:");
     int month = get.intGetter();
@@ -135,6 +142,10 @@ public class ConsoleUiMember {
 
   }
 
+
+  /**
+  * gets the day of the berth.
+  */
   public int getDay(int month) {
     System.out.println("\nDay of Berth: (DD)");
     int day = get.intGetter();
@@ -152,6 +163,9 @@ public class ConsoleUiMember {
     return day;
   }
 
+  /**
+  * gets the age to search for.
+  */
   public int getAge() {
     System.out.println("\nAge of Member:");
     int age = get.intGetter();
@@ -161,6 +175,7 @@ public class ConsoleUiMember {
     }
     return age;
   }
+
   /**
   * Responsible for viewing the personal id form.
   */
@@ -196,7 +211,6 @@ public class ConsoleUiMember {
   * Responsible for viewing a specific members information.
   */
   public void showSpecMemberInfo(Member member) {
-    // Här ska ett objekt av en medlem skickas in och sedan ska metoder som getName osv anropas härifrån
     System.out.println("\nMember Info!\n");
     memInfo(member);
   }
@@ -250,10 +264,11 @@ public class ConsoleUiMember {
         }
       }
       if (String.valueOf(count).length() == 1) {
-      System.out.println(count + "       ||" + name + "||    " + memId + "||          " + memm.ownedBoats());
-      }
-      else{
-        System.out.println(count + "      ||" + name + "||    " + memId + "||          " + memm.ownedBoats());
+        System.out.println(count + "       ||" + name + "||    " + memId 
+            + "||          " + memm.ownedBoats());
+      } else {
+        System.out.println(count + "      ||" + name + "||    " + memId 
+            + "||          " + memm.ownedBoats());
       }
       count++;
     }

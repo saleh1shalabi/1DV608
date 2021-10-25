@@ -11,6 +11,9 @@ public class ConsoleUiBoat {
 
   private Getter get = new Getter();
 
+  /**
+  * boats menu.
+  */
   private void showMenuBoats() {
     System.out.println("1. Add a Boat");
     System.out.println("2. Change a Boat");
@@ -18,7 +21,10 @@ public class ConsoleUiBoat {
     System.out.println("0. Back");
   }
 
-  public Boats BoatsChoise() {
+  /**
+  * choise of boat menu.
+  */
+  public Boats boatsChoise() {
     int nr = 10;
     Choises.Boats g = null;
     while (g == Boats.None || g == null) {

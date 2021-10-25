@@ -1,9 +1,14 @@
-package model.SearchStrategy;
+package model.search;
 
 import java.util.ArrayList;
 import model.domain.Member;
 
+/**
+* Search by a name given.
+*/
 public class ByName implements Search {
+  private ArrayList<Member> found = new ArrayList<>();
+
   
   @Override
   public ArrayList<Member> find(ArrayList<Member> members, String name) {

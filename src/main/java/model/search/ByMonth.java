@@ -1,26 +1,33 @@
-package model.SearchStrategy;
+package model.search;
 
 import java.util.ArrayList;
 import model.domain.Member;
 
-public class ByYear implements Search {
+/**
+* Search by a month given.
+*/
+public class ByMonth implements Search {
+
+  private ArrayList<Member> found = new ArrayList<>();
 
   @Override
   public ArrayList<Member> find(ArrayList<Member> members, String string) {
     int old = Integer.parseInt(string);
-    int year;
+    int month;
     for (Member mem : members) {
-     year = mem.getYear();
-     if (year == old) {
-       found.add(mem);
-     }
+      month = mem.getMonth();
+      if (month == old) {
+        found.add(mem);
+      }
     }
     return found;
   }
 
   @Override
   public void clearList() {
-   found.clear();
+    found.clear();
   }
+
+  
   
 }

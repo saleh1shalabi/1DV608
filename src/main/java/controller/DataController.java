@@ -24,7 +24,6 @@ public abstract class DataController {
   DataController(MemberManager memMan, UserManager userMan) {
     this.memMan = memMan;
     this.userMan = userMan;
-   
   }
 
 
@@ -52,7 +51,11 @@ public abstract class DataController {
     }
   }
 
-  
+
+
+  /**
+  * Responsible saving changes when quit.
+  */
   public void save() {
     hc.saveUsers(userMan.getUsers());
     hc.saveBoats(memMan.getMembers());
@@ -60,11 +63,14 @@ public abstract class DataController {
   }
 
 
+  /**
+  * Responsible adding the users.
+  */
   public void userAdder() {
     Map<String,String> users = hc.getUsers();
     String username;
     String password;
-    for(Entry<String, String> g : users.entrySet()) {
+    for (Entry<String, String> g : users.entrySet()) {
       username = g.getKey();
       password = g.getValue();
       userMan.addUser(username, password);

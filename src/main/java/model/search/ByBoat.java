@@ -1,11 +1,15 @@
-package model.SearchStrategy;
+package model.search;
 
 import java.util.ArrayList;
-
 import model.domain.Boat;
 import model.domain.Member;
 
+/**
+* Search by a chosen boat.
+*/
 public class ByBoat implements Search {
+  private ArrayList<Member> found = new ArrayList<>();
+
 
   @Override
   public ArrayList<Member> find(ArrayList<Member> members, String string) {

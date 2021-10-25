@@ -5,17 +5,24 @@ import java.util.Map.Entry;
 import model.domain.UserManager;
 import view.ConsoleUi;
 
-public class userController {
+
+/**
+* Class to be the controller of user.
+*/
+public class UserController {
 
   private UserManager userMan;
   private ConsoleUi console;
  
 
-  userController(UserManager userMan, ConsoleUi console) {
+  UserController(UserManager userMan, ConsoleUi console) {
     this.userMan = userMan;
     this.console = console;
   }
 
+  /**
+  * Responsible of checking if the user is vaild.
+  */
   public boolean logInCheck(Map.Entry<String, String> user) {
     boolean c = false;
     for (Entry<String, String> g : userMan.getUsers().entrySet()) {
@@ -35,6 +42,9 @@ public class userController {
     return console.chooseUser(userMan);
   }
 
+  /**
+  * removes user.
+  */
   public void removeUser(String user) {
     console.sureMsgDelete(user);
     if (console.checker()) {

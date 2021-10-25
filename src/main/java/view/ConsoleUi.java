@@ -28,13 +28,18 @@ public class ConsoleUi {
     System.out.println("\nWelcome to the Boat Club, choose what you want to do\n");
   }
 
-
+  /**
+  * first menu.
+  */
   private void firstMenu() {
     System.out.println("\n1. Log in");
     System.out.println("2. Use lite");
     System.out.println("0. Exit\n");
   }
 
+  /**
+  * choise of first menu.
+  */
   public First firstChoise() {
     int nr = 10;
     First g = null;
@@ -102,6 +107,9 @@ public class ConsoleUi {
     System.out.println("\nWrong Value!");
   }
 
+  /**
+  * gets the username and password.
+  */
   public Map.Entry<String, String>  userInfo() {
     System.out.println("\nEnter username: ");
     String username = get.stringGetter();
@@ -116,8 +124,8 @@ public class ConsoleUi {
   }
 
 
-  public Boats BoatsChoise() {
-    return consoleBoat.BoatsChoise();
+  public Boats boatsChoise() {
+    return consoleBoat.boatsChoise();
   }
 
 
@@ -127,7 +135,7 @@ public class ConsoleUi {
 
 
   public String getString() {
-    System.out.println("\nEnter value to Search for\n");
+    System.out.println("\nEnter a Name to Search for\n");
     return get.stringGetter();
   }
 

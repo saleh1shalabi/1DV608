@@ -2,14 +2,14 @@ package controller;
 
 import java.util.ArrayList;
 
-import model.SearchStrategy.ByAge;
-import model.SearchStrategy.ByBoat;
-import model.SearchStrategy.ByMonth;
-import model.SearchStrategy.ByName;
-import model.SearchStrategy.ByYear;
-import model.SearchStrategy.Search;
 import model.domain.Member;
 import model.domain.MemberManager;
+import model.search.ByAge;
+import model.search.ByBoat;
+import model.search.ByMonth;
+import model.search.ByName;
+import model.search.ByYear;
+import model.search.Search;
 import view.ConsoleUi;
 import view.ConsoleUiMember;
 
@@ -44,7 +44,8 @@ public class MemberController {
   public void memberAdder() {
     String memberName = consoleMember.firstNameGetter();
     memberName += " " + consoleMember.lastNameGetter();
-    Member mem = new Member(memberName, consoleMember.personalIdGetter(), memMan.randomId().toString());
+    Member mem = new Member(memberName, consoleMember.personalIdGetter(),
+         memMan.randomId().toString());
     consoleMember.addBoat(mem.getName());
     check = console.checker();
     while (check) {
@@ -92,53 +93,66 @@ public class MemberController {
     consoleMember.showCompactList(memMan.getMembers());
   }
 
-  private void getFounded(ArrayList<Member> allMembers, String s) { 
+  /**
+  * finds the search wanted.
+  */
+  private void getFounded(ArrayList<Member> allMembers, view.Choises.Search s) { 
     String toSearch = "";
-    if (s.equals("name")) {
-      toSearch = console.getString();
-    } else if (s.equals("age")) {
-      toSearch = String.valueOf(console.getAge());
-    } else if (s.equals("month")) {
-      toSearch = String.valueOf(console.getMonth());
-    } else if (s.equals("year")) {
-      toSearch = String.valueOf(console.getYear());
-    } else if (s.equals("boat")) {
-      toSearch = console.getBoatType();
+    switch (s) {
+      case Name:
+        toSearch = console.getString();
+        break;
+      case Age:
+        toSearch = String.valueOf(console.getAge());
+        break;
+      case Month:
+        toSearch = String.valueOf(console.getMonth());
+        break;
+      case Year:
+        toSearch = String.valueOf(console.getYear());
+        break;
+      case Boat:
+        toSearch = console.getBoatType();
+        break;
+      default:
+        break;
     }
-    System.out.println(toSearch);
-
     ArrayList<Member> members = search.find(allMembers, toSearch);
     if (members.size() == 0) {
       console.noMatch(toSearch);
     } else {
-    consoleMember.showVerboseList(members);
+      consoleMember.showVerboseList(members);
     }
     search.clearList();
   }
+
+  /**
+  * finds the search by name.
+  */
   public void findByName(ArrayList<Member> members) {
     search = new ByName();
-    getFounded(members, "name");
+    getFounded(members, view.Choises.Search.Name);
     
   }
 
   public void findByYear(ArrayList<Member> members) {
     search = new ByYear();
-    getFounded(members, "year");
+    getFounded(members, view.Choises.Search.Year);
   }
 
   public void findByAge(ArrayList<Member> members) {
     search = new ByAge();
-    getFounded(members, "age");
+    getFounded(members, view.Choises.Search.Age);
   }
 
   public void findByMonth(ArrayList<Member> members) {
     search = new ByMonth();
-    getFounded(members, "month");
+    getFounded(members, view.Choises.Search.Month);
   }
 
   public void findByBoat(ArrayList<Member> members) {
     search = new ByBoat();
-    getFounded(members, "boat");
+    getFounded(members, view.Choises.Search.Boat);
   }
 
 }

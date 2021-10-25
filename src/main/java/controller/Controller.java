@@ -6,13 +6,17 @@ import model.domain.MemberManager;
 import model.domain.UserManager;
 import view.ConsoleUi;
 
+
+/**
+* Facad of Controlles.
+*/
 public class Controller {
   
   private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
   private UserManager userMan = new UserManager();
   private DataController fc = new FileController(memMan, userMan);
-  private userController userCon = new userController(userMan, console);
+  private UserController userCon = new UserController(userMan, console);
   private BoatController boatCon = new BoatController(console);
   private MemberController memCon = new MemberController(memMan, boatCon, console);
 
@@ -41,7 +45,7 @@ public class Controller {
   }
 
   public void removeBoat(Member mem) {
-  boatCon.removeBoat(mem);
+    boatCon.removeBoat(mem);
   }
 
   public void memberAdder() {
