@@ -63,7 +63,7 @@ public class ConsoleUiUser {
           g = InLoged.LogOut;
           break;
         default:
-          System.out.println("Wrong Value!");
+          get.wronger();
           g = InLoged.None;
           break;
       }
@@ -108,7 +108,7 @@ public class ConsoleUiUser {
           g = Users.Back;
           break;
         default:
-          System.out.println("Wrong Value!");
+          get.wronger();
           g = Users.None;
           break;
       }
@@ -123,7 +123,7 @@ public class ConsoleUiUser {
   /**
   * shows the users and return one to delete.
   */
-  public String chooseUser(Map<String,String> users, int size) {
+  public String chooseUser(Map<String, String> users, int size) {
     
     System.out.println("\nChoose the user: ");
     int count = 1; 

@@ -164,9 +164,9 @@ public class BoatClub {
         case Boat:
           controller.findByBoat();
           break;
-        // case DeleteMember:
-        //   controller.removeMember();
-          // break;
+        case Complex:
+          controller.complexSearch();
+          break;
         case Back:
           break;
         default:

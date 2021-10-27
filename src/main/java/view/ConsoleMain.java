@@ -88,7 +88,7 @@ public class ConsoleMain {
           g = Lite.Back;
           break;
         default:
-          System.out.println("Wrong Value!");
+          wronger();
           g = Lite.None;
           break;
       }
@@ -107,6 +107,7 @@ public class ConsoleMain {
     System.out.println("3. Search by month of berth");
     System.out.println("4. Search by year of berth");
     System.out.println("5. Search for members with a special boatType");
+    System.err.println("6. Complex search EXEMPLE");
     System.out.println("0. Back\n");
   }
 
@@ -135,11 +136,14 @@ public class ConsoleMain {
         case 5:
           g = Search.Boat;
           break;
+        case 6:
+          g = Search.Complex;
+          break;
         case 0:
           g = Search.Back;
           break;
         default:
-          System.out.println("Wrong Value!");
+          wronger();
           g = Search.None;
           break;
       }
@@ -186,7 +190,7 @@ public class ConsoleMain {
   * error msg.
   */
   public void wronger() {
-    System.out.println("\nWrong Value!");
+    get.wronger();
   }
 
 
@@ -201,8 +205,8 @@ public class ConsoleMain {
   }
 
 
-  public void noMatch(String name) {
-    System.out.println("\nNo match found of the search of " + name + "\n");
+  public void noMatch() {
+    System.out.println("\nNo match found of the search \n");
   }
 
   public void cantRemove() {

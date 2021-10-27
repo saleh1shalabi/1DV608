@@ -33,7 +33,7 @@ public class Controller {
   }
 
   public void save() {
-    fc.save(userCon.getUsers(),memCon.getMembers());
+    fc.save(userCon.getUsers(), memCon.getMembers());
   }
 
   public void registerBoat(Member mem) {
@@ -107,5 +107,9 @@ public class Controller {
 
   public void findByBoat() {
     memCon.findByBoat();
+  }
+
+  public void complexSearch() {
+    memCon.complexSearch();
   }
 }

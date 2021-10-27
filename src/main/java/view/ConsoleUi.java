@@ -52,7 +52,7 @@ public class ConsoleUi {
   }
 
 
-  public String chooseUser(Map<String,String> users, int size) {
+  public String chooseUser(Map<String, String> users, int size) {
     return consoleUser.chooseUser(users, size);
   }
 
@@ -172,8 +172,8 @@ public class ConsoleUi {
   }
 
 
-  public void noMatch(String toSearch) {
-    console.noMatch(toSearch);
+  public void noMatch() {
+    console.noMatch();
   }
 
 

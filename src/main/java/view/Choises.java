@@ -55,7 +55,7 @@ public class Choises {
   * enum of what search behaivour it would be.
   */
   public enum Search {
-    Name, Age, Month, Year, Boat, Back, None
+    Name, Age, Month, Year, Boat, Complex, Back, None
   }
 
 }

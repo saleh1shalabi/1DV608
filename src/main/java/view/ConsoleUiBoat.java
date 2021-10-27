@@ -44,7 +44,7 @@ public class ConsoleUiBoat {
           g = Boats.Back;
           break;
         default:
-          System.out.println("Wrong Value!");
+          get.wronger();
           g = Boats.None;
           break;
       }

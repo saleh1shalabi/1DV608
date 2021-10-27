@@ -16,7 +16,8 @@ public abstract class DataController {
 
   /**
   * adds the members and theire boats from files or hardcode.
-   * @return 
+  *
+  * @return members as arraylist.
   */
   public ArrayList<Member> memAdder() {
     ArrayList<Member> members = new ArrayList<>();
@@ -45,8 +46,10 @@ public abstract class DataController {
 
   /**
   * Responsible saving changes when quit.
-   * @param members all members.
-   * @param users all users.
+  *
+  * @param members all members.
+  *
+  * @param users all users.
   */
   public void save(Map<String, String> users, Iterable<Member> members) {
     hc.saveUsers(users);
@@ -57,7 +60,8 @@ public abstract class DataController {
 
   /**
   * Responsible adding the users.
-   * @return 
+  *
+  * @return users as map.
   */
   public Map<String, String> userAdder() {
     Map<String, String> users = hc.getUsers();
