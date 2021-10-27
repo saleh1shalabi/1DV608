@@ -2,11 +2,8 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Map.Entry;
 import model.domain.Boat;
 import model.domain.Member;
-import model.domain.MemberManager;
-import model.domain.UserManager;
 import model.presistence.PersistenceInterface;
 
 
@@ -15,21 +12,14 @@ import model.presistence.PersistenceInterface;
 */
 public abstract class DataController {
 
-  
-  private MemberManager memMan;
-  private UserManager userMan;
   protected PersistenceInterface hc;
-
-  DataController(MemberManager memMan, UserManager userMan) {
-    this.memMan = memMan;
-    this.userMan = userMan;
-  }
-
 
   /**
   * adds the members and theire boats from files or hardcode.
+   * @return 
   */
-  public void memAdder() {
+  public ArrayList<Member> memAdder() {
+    ArrayList<Member> members = new ArrayList<>();
     String[] nm = hc.getNames();
     int[] persId = hc.getPersonalIds();
     String[] memberIds = hc.getMemberIds();
@@ -46,34 +36,32 @@ public abstract class DataController {
           break;
         }
       }
-      memMan.addMember(mem);
+      members.add(mem);
     }
+    return members;
   }
 
 
 
   /**
   * Responsible saving changes when quit.
+   * @param members all members.
+   * @param users all users.
   */
-  public void save() {
-    hc.saveUsers(userMan.getUsers());
-    hc.saveBoats(memMan.getMembers());
-    hc.saveMembers(memMan.getMembers());
+  public void save(Map<String, String> users, Iterable<Member> members) {
+    hc.saveUsers(users);
+    hc.saveBoats(members);
+    hc.saveMembers(members);
   }
 
 
   /**
   * Responsible adding the users.
+   * @return 
   */
-  public void userAdder() {
+  public Map<String, String> userAdder() {
     Map<String, String> users = hc.getUsers();
-    String username;
-    String password;
-    for (Entry<String, String> g : users.entrySet()) {
-      username = g.getKey();
-      password = g.getValue();
-      userMan.addUser(username, password);
-    }
+    return users;
   }
   
 }

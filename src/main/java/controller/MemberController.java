@@ -10,7 +10,7 @@ import model.search.ByName;
 import model.search.ByYear;
 import model.search.Search;
 import view.ConsoleUi;
-import view.ConsoleUiMember;
+
 
 /**
 * this is the controller of members.
@@ -18,22 +18,17 @@ import view.ConsoleUiMember;
 public class MemberController {
 
   private ConsoleUi console;
-  private ConsoleUiMember consoleMember;
-  private MemberManager memMan;
-  private boolean check = false;
+  private MemberManager memMan = new MemberManager();
   private BoatController boatCon;
   private Search search;
 
-  MemberController(MemberManager memMan, BoatController boatCon, ConsoleUi console) {
-    this.memMan = memMan;
+  MemberController(BoatController boatCon, ConsoleUi console) {
     this.boatCon = boatCon;
     this.console = console;
-    this.consoleMember = new ConsoleUiMember(console);
-
   }
   
   public Member memberChooser() {
-    int memIndex = consoleMember.chooseMember(memMan.getMembers());
+    int memIndex = console.chooseMember(memMan.getMembers(), memMan.getMembers().size());
     return memMan.getMembers().get(memIndex);
   }
 
@@ -41,15 +36,15 @@ public class MemberController {
   * Responsible adding members.
   */
   public void memberAdder() {
-    String memberName = consoleMember.firstNameGetter();
-    memberName += " " + consoleMember.lastNameGetter();
-    Member mem = new Member(memberName, consoleMember.personalIdGetter(),
+    String memberName = console.firstNameGetter();
+    memberName += " " + console.lastNameGetter();
+    Member mem = new Member(memberName, console.personalIdGetter(),
          memMan.randomId().toString());
-    consoleMember.addBoat(mem.getName());
-    check = console.checker();
+    console.addBoat(mem.getName());
+    boolean check = console.checker();
     while (check) {
       boatCon.registerBoat(mem);
-      consoleMember.addBoat(mem.getName());
+      console.addBoat(mem.getName());
       check = console.checker();
     }
     memMan.addMember(mem);
@@ -60,14 +55,14 @@ public class MemberController {
   * Responsible changing member info.
   */
   public void changeMember(Member mem) {
-    consoleMember.showSpecMemberInfo(mem);
+    console.showSpecMemberInfo(mem);
     console.sureMsgChange();
-    check = console.checker();
+    boolean check = console.checker();
     if (check) {
-      if (consoleMember.whatToChange() == 1) {
-        mem.setName(consoleMember.firstNameGetter() + consoleMember.lastNameGetter());
+      if (console.whatToChange() == 1) {
+        mem.setName(console.firstNameGetter() + console.lastNameGetter());
       } else {
-        mem.setPersonalId(consoleMember.personalIdGetter());
+        mem.setPersonalId(console.personalIdGetter());
       }
     }
   }
@@ -78,24 +73,16 @@ public class MemberController {
   public void removeMember() {
     Member mem = memberChooser();
     console.sureMsgDelete(mem.getName());
-    check = console.checker();
+    boolean check = console.checker();
     if (check) {
       memMan.removeMember(mem);
     }
   }
 
-  public void viewVerboseList() {
-    consoleMember.showVerboseList(memMan.getMembers());
-  }
-  
-  public void viewCompactList() {
-    consoleMember.showCompactList(memMan.getMembers());
-  }
-
   /**
   * finds the search wanted.
   */
-  private void getFounded(ArrayList<Member> allMembers, view.Choises.Search s) { 
+  private void getFounded(Iterable<Member> iterable, view.Choises.Search s) { 
     String toSearch = "";
     switch (s) {
       case Name:
@@ -116,11 +103,11 @@ public class MemberController {
       default:
         break;
     }
-    ArrayList<Member> members = search.find(allMembers, toSearch);
+    ArrayList<Member> members = search.find(iterable, toSearch);
     if (members.size() == 0) {
       console.noMatch(toSearch);
     } else {
-      consoleMember.showVerboseList(members);
+      console.showVerboseList(members);
     }
     search.clearList();
   }
@@ -128,30 +115,61 @@ public class MemberController {
   /**
   * finds the search by name.
   */
-  public void findByName(ArrayList<Member> members) {
+  public void findByName() {
     search = new ByName();
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
     getFounded(members, view.Choises.Search.Name);
-    
+
   }
 
-  public void findByYear(ArrayList<Member> members) {
+  /**
+  * finds the search by Year of berth.
+  */
+  public void findByYear() {
     search = new ByYear();
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
     getFounded(members, view.Choises.Search.Year);
   }
 
-  public void findByAge(ArrayList<Member> members) {
+  /**
+  * finds the search by Age.
+  */
+  public void findByAge() {
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
     search = new ByAge();
     getFounded(members, view.Choises.Search.Age);
   }
 
-  public void findByMonth(ArrayList<Member> members) {
+  /**
+  * finds the search by month of berth.
+  */
+  public void findByMonth() {
     search = new ByMonth();
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
     getFounded(members, view.Choises.Search.Month);
   }
 
-  public void findByBoat(ArrayList<Member> members) {
+  /**
+  * finds the search by type of boats owned.
+  */
+  public void findByBoat() {
     search = new ByBoat();
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
     getFounded(members, view.Choises.Search.Boat);
+  }
+
+  public Iterable<Member> getMembers() {
+    Iterable<Member> members = new ArrayList<>(memMan.getMembers());
+    return members;
+  }
+
+  /**
+  * adds members from list.
+  */
+  public void addMembers(ArrayList<Member> memAdder) {
+    for (Member mem : memAdder) {
+      memMan.addMember(mem);
+    }
   }
 
 }

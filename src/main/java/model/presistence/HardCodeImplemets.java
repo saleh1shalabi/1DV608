@@ -16,14 +16,6 @@ public class HardCodeImplemets implements PersistenceInterface {
   private String[] names = {"Saleh Shalabi", "Hanna Sjöberg", "Gustav Vasa", "Monkey D. Luffy"};
   private int[] personalIds = {199903330, 19950308, 14960512, 19800505};
   private String[] memberIds = {"A23FG5", "F55THJ", "WQ4YPO", "GGW14Y"};
-  private PersistenceInterface file = new FileLoader();
-
-  /**
-  * it will add boats when an object is made.
-  */
-  public HardCodeImplemets() {
-    file.getNames();
-  }
   
   /**
   * returns the names array.
@@ -80,13 +72,13 @@ public class HardCodeImplemets implements PersistenceInterface {
   }
 
   @Override
-  public void saveBoats(ArrayList<Member> members) {
+  public void saveBoats(Iterable<Member> members) {
     // TODO Auto-generated method stub
     
   }
 
   @Override
-  public void saveMembers(ArrayList<Member> members) {
+  public void saveMembers(Iterable<Member> members) {
     // TODO Auto-generated method stub
     
   }
@@ -99,8 +91,9 @@ public class HardCodeImplemets implements PersistenceInterface {
 
   @Override
   public Map<String, String> getUsers() {
-    // TODO Auto-generated method stub
-    return null;
+    Map<String, String> users = new HashMap<>();
+    users.put("admin", "admin");
+    return users;
   }
 
 

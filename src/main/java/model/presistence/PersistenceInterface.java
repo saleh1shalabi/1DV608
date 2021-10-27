@@ -19,9 +19,9 @@ public interface PersistenceInterface {
 
   public Map<String, ArrayList<Boat>> getBoats();
 
-  public void saveBoats(ArrayList<Member> members);
+  public void saveBoats(Iterable<Member> members);
 
-  public void saveMembers(ArrayList<Member> members);
+  public void saveMembers(Iterable<Member> members);
 
   public void saveUsers(Map<String, String> users);
 

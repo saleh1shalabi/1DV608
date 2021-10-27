@@ -125,10 +125,10 @@ public class BoatClub {
       g = console.liteChoise();
       switch (g) {
         case Verbose:
-          controller.viewVerboseList();
+          controller.showVerboseList();
           break;
         case Compact:
-          controller.viewCompactList();
+          controller.showCompactList();
           break;
         case Search:
           searchMenu();
@@ -192,10 +192,10 @@ public class BoatClub {
           controller.changeMember(mem);
           break;
         case Verbose:
-          controller.viewVerboseList();
+          controller.showVerboseList();
           break;
         case Compact:
-          controller.viewCompactList();
+          controller.showCompactList();
           break;
         case DeleteMember:
           controller.removeMember();

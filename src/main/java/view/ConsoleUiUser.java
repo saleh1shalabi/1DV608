@@ -2,10 +2,7 @@ package view;
 
 import java.util.Map;
 import java.util.Map.Entry;
-import model.domain.UserManager;
 import view.Choises.InLoged;
-import view.Choises.Lite;
-import view.Choises.Search;
 import view.Choises.Users;
 
 
@@ -25,6 +22,18 @@ public class ConsoleUiUser {
     System.out.println("3. Search");
     System.out.println("4. Users");
     System.out.println("0. Log Out\n");
+  }
+
+  /**
+  * gets the username and password.
+  */
+  public Map.Entry<String, String>  userInfo() {
+    System.out.println("\nEnter username: ");
+    String username = get.stringGetter();
+    System.out.println("\nEnter password: ");
+    String password = get.stringGetter();
+    Map.Entry<String, String> g = Map.entry(username.toLowerCase(), password.toLowerCase());
+    return g;
   }
 
 
@@ -64,47 +73,7 @@ public class ConsoleUiUser {
   } 
 
 
-  /**
-  * outloged menu.
-  */
-  private void liteMenu() {
-    System.out.println("\n1. View Verbose list");
-    System.out.println("2. View Compact list");
-    System.out.println("3. Search");
-    System.out.println("0. Back\n");
-  }
-
-  /**
-  * outloged choise.
-  */
-  public Lite liteChoise() {
-    int nr = 10;
-    Lite g = null;
-    while (g == Lite.None || g == null) {
-      liteMenu();
-      nr = get.intGetter();
-      switch (nr) {
-        case 1:
-          g = Lite.Verbose;
-          break;
-        case 2:
-          g = Lite.Compact;
-          break;
-        case 3:
-          g = Lite.Search;
-          break;
-        case 0:
-          g = Lite.Back;
-          break;
-        default:
-          System.out.println("Wrong Value!");
-          g = Lite.None;
-          break;
-      }
-      break;
-    }
-    return g;
-  } 
+  
   
   /**
   * user menu.
@@ -149,71 +118,23 @@ public class ConsoleUiUser {
   }
 
 
-  /**
-  * search menu.
-  */
-  private void searchMenu() {
-    System.out.println("\n1. Search by Name");
-    System.out.println("2. Search by Age");
-    System.out.println("3. Search by month of berth");
-    System.out.println("4. Search by year of berth");
-    System.out.println("5. Search for members with a special boatType");
-    System.out.println("0. Back\n");
-  }
-
-  /**
-  * search choise.
-  */
-  public Search searchChoies() {
-    int nr = 10;
-    Search g = null;
-    while (g == Search.None || g == null) {
-      searchMenu();
-      nr = get.intGetter();
-      switch (nr) {
-        case 1:
-          g = Search.Name;
-          break;
-        case 2:
-          g = Search.Age;
-          break;
-        case 3:
-          g = Search.Month;
-          break;
-        case 4:
-          g = Search.Year;
-          break;
-        case 5:
-          g = Search.Boat;
-          break;
-        case 0:
-          g = Search.Back;
-          break;
-        default:
-          System.out.println("Wrong Value!");
-          g = Search.None;
-          break;
-      }
-      break;
-    }
-    return g;
-  }
+  
 
   /**
   * shows the users and return one to delete.
   */
-  public String chooseUser(UserManager userMan) {
+  public String chooseUser(Map<String,String> users, int size) {
     
     System.out.println("\nChoose the user: ");
     int count = 1; 
-    for (java.util.Map.Entry<String, String> g : userMan.getUsers().entrySet()) {
+    for (java.util.Map.Entry<String, String> g : users.entrySet()) {
       System.out.println(count + ". " + g.getKey());
       count++;
     }
-    int choose = get.compare(userMan.getUsers().size());
+    int choose = get.compare(size);
     count = 0;
     String user = "";
-    for (java.util.Map.Entry<String, String> g : userMan.getUsers().entrySet()) {
+    for (java.util.Map.Entry<String, String> g : users.entrySet()) {
       if (count == choose) {
         user = g.getKey();
       }

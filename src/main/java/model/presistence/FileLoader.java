@@ -132,7 +132,7 @@ public class FileLoader implements PersistenceInterface {
   * saves the boats to file.
   */
   @Override
-  public void saveBoats(ArrayList<Member> members) {
+  public void saveBoats(Iterable<Member> members) {
     FileWriter boatWriter = null;
     try {
       boatWriter = new FileWriter(pathToBoats, StandardCharsets.UTF_8);
@@ -169,7 +169,7 @@ public class FileLoader implements PersistenceInterface {
   * saves the members to file.
   */
   @Override
-  public void saveMembers(ArrayList<Member> members) {
+  public void saveMembers(Iterable<Member> members) {
     FileWriter memberWriter = null;
     try {
       memberWriter = new FileWriter(pathToMembers, StandardCharsets.UTF_8);

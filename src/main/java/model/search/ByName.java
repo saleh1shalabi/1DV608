@@ -11,7 +11,7 @@ public class ByName implements Search {
 
   
   @Override
-  public ArrayList<Member> find(ArrayList<Member> members, String name) {
+  public ArrayList<Member> find(Iterable<Member>  members, String name) {
     for (Member mem : members) {
       if (mem.getName().equals(name)) {
         found.add(mem);

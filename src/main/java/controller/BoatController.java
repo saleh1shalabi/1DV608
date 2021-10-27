@@ -3,7 +3,6 @@ package controller;
 import model.domain.Boat;
 import model.domain.Member;
 import view.ConsoleUi;
-import view.ConsoleUiBoat;
 
 /**
 * This is the controller of boats.
@@ -11,7 +10,6 @@ import view.ConsoleUiBoat;
 public class BoatController {
   
   private ConsoleUi console;
-  private ConsoleUiBoat consoleBoat = new ConsoleUiBoat();
 
 
   BoatController(ConsoleUi console) {
@@ -22,8 +20,8 @@ public class BoatController {
   * Responsible for register a boat to a member.
   */
   public void registerBoat(Member mem) {
-    String boatType = consoleBoat.chooseBoatType();
-    Integer length = consoleBoat.lengthGetter();
+    String boatType = console.getBoatType();
+    Integer length = console.lengthGetter();
     Boat boat = new Boat(boatType, length);
     mem.addBoat(boat);
   }
@@ -32,15 +30,15 @@ public class BoatController {
   * Responsible for changing a boats information.
   */
   public void changeBoat(Member mem) {
-    consoleBoat.chooseMessage();
-    int boatIndex = consoleBoat.chooseBoat(mem);
+    console.chooseMessage();
+    int boatIndex = console.chooseBoat(mem);
     console.sureMsgChange();
     boolean check = console.checker();
     if (check) {
-      if (consoleBoat.whatToChange() == 1) {
-        mem.getBoats().get(boatIndex).setType(consoleBoat.chooseBoatType());
+      if (console.whatToChange() == 1) {
+        mem.getBoats().get(boatIndex).setType(console.getBoatType());
       } else {
-        mem.getBoats().get(boatIndex).setLength(consoleBoat.lengthGetter());
+        mem.getBoats().get(boatIndex).setLength(console.lengthGetter());
       }
     }
   }
@@ -50,8 +48,8 @@ public class BoatController {
   */
   public void removeBoat(Member mem) {
     
-    consoleBoat.chooseMessage();
-    int boatIndex = consoleBoat.chooseBoat(mem);
+    console.chooseMessage();
+    int boatIndex = console.chooseBoat(mem);
     console.sureMsgDelete(mem.getBoats().get(boatIndex).getType());
     boolean check = console.checker();
     if (check) {

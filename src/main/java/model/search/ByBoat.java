@@ -12,7 +12,7 @@ public class ByBoat implements Search {
   private ArrayList<Member> found = new ArrayList<>();
 
   @Override
-  public ArrayList<Member> find(ArrayList<Member> members, String string) {
+  public ArrayList<Member> find(Iterable<Member>  members, String string) {
     
     for (Member mem : members) {
       for (Boat b : mem.getBoats()) {

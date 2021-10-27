@@ -11,7 +11,7 @@ public class ByYear implements Search {
 
 
   @Override
-  public ArrayList<Member> find(ArrayList<Member> members, String string) {
+  public ArrayList<Member> find(Iterable<Member> members, String string) {
     int old = Integer.parseInt(string);
     int year;
     for (Member mem : members) {

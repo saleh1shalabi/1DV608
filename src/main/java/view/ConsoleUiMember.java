@@ -1,6 +1,5 @@
 package view;
 
-import java.util.ArrayList;
 import model.domain.Boat;
 import model.domain.Member;
 import view.Choises.Members;
@@ -10,13 +9,8 @@ import view.Choises.Members;
 */
 public class ConsoleUiMember {
  
-  private ConsoleUi console;
+  
   private Getter get = new Getter();
-
-
-  public ConsoleUiMember(ConsoleUi console) {
-    this.console = console;
-  }
 
   /**
   * shows the main menu.
@@ -60,7 +54,7 @@ public class ConsoleUiMember {
           g = Members.Back;
           break;
         default:
-          console.wronger();
+          System.out.println("Wroung Value!");
           g = Members.None;
           break;
       }
@@ -72,14 +66,14 @@ public class ConsoleUiMember {
   /**
   * Responsible for viewing the members for the user so they can pick a member.
   */
-  public int chooseMember(ArrayList<Member> members) {
+  public int chooseMember(Iterable<Member> members, int size) {
     chooseMessage();
     int count = 1; 
     for (Member mem : members) {
       System.out.println(count + ". " + mem.getName());
       count++;
     }
-    int choose = get.compare(members.size());
+    int choose = get.compare(size);
     return choose;
 
   }
@@ -121,7 +115,7 @@ public class ConsoleUiMember {
     int year = get.intGetter();
     
     while (String.valueOf(year).length() != 4 || year < 1900 || year > 2021) {
-      console.wronger();
+      System.out.println("Wroung Value!");
       System.out.println("\nThe Correct Format is (YYYY)");
       year = get.intGetter();
     }
@@ -135,7 +129,7 @@ public class ConsoleUiMember {
     System.out.println("\nMonth of Berth:");
     int month = get.intGetter();
     while (month <= 0 || month > 12) {
-      console.wronger();
+      System.out.println("Wroung Value!");
       month = get.intGetter();
     }
     return month;
@@ -151,12 +145,12 @@ public class ConsoleUiMember {
     int day = get.intGetter();
     if (month == 2) {
       while (day <= 0 || day > 29) {
-        console.wronger();
+        System.out.println("Wroung Value!");
         day = get.intGetter();
       }
     } else {
       while (day <= 0 || day > 31) {
-        console.wronger();
+        System.out.println("Wroung Value!");
         day = get.intGetter();
       }
     }
@@ -170,7 +164,7 @@ public class ConsoleUiMember {
     System.out.println("\nAge of Member:");
     int age = get.intGetter();
     while (age <= 0 || age > 100) {
-      console.wronger();
+      System.out.println("Wroung Value!");
       age = get.intGetter();
     }
     return age;
@@ -180,11 +174,8 @@ public class ConsoleUiMember {
   * Responsible for viewing the personal id form.
   */
   public Integer personalIdGetter() {
-    
-    
     int year = getYear();
-    
-    int month = get.intGetter();
+    int month = getMonth();
     
     int day = getDay(month);
     
@@ -218,10 +209,10 @@ public class ConsoleUiMember {
   /**
   * Responsible for viewing the verbose list.
   */
-  public void showVerboseList(ArrayList<Member> members) {
+  public void showVerboseList(Iterable<Member> iterable) {
     System.out.println("\n------VERBOSE LIST------\n");
     int count = 1;
-    for (Member memm : members) {
+    for (Member memm : iterable) {
       System.out.println("Member " + count);
       memInfo(memm);
       System.out.println("**********************************\n");
@@ -250,11 +241,11 @@ public class ConsoleUiMember {
   /**
   * Responsible for viewing the compact list.
   */
-  public void showCompactList(ArrayList<Member> members) {
+  public void showCompactList(Iterable<Member> iterable) {
     System.out.println("\n-----COMPACT LIST------\n");
     System.out.println("Member  ||      Name        ||     Member ID    ||   Number Of Boats\n");
     int count = 1;
-    for (model.domain.Member memm : members) {
+    for (model.domain.Member memm : iterable) {
       String name = memm.getName();
       String memId = "   " + memm.getMemberId() + "     ";
       while (name.length() < 18) {

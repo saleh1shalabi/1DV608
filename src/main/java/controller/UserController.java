@@ -11,12 +11,11 @@ import view.ConsoleUi;
 */
 public class UserController {
 
-  private UserManager userMan;
+  private UserManager userMan = new UserManager();
   private ConsoleUi console;
- 
+  private String currentUser;
 
-  UserController(UserManager userMan, ConsoleUi console) {
-    this.userMan = userMan;
+  UserController(ConsoleUi console) {
     this.console = console;
   }
 
@@ -28,6 +27,7 @@ public class UserController {
     for (Entry<String, String> g : userMan.getUsers().entrySet()) {
       if (user.equals(g)) {
         c = true;
+        currentUser = user.getKey();
       }    
     }
     return c;
@@ -38,22 +38,40 @@ public class UserController {
     userMan.addUser(acount.getKey(), acount.getValue());
   }
 
-  public String chooseUser(UserManager userMan) {
-    return console.chooseUser(userMan);
+  public String chooseUser() {
+    return console.chooseUser(userMan.getUsers(), userMan.getUsers().size());
   }
 
   /**
   * removes user.
   */
   public void removeUser(String user) {
-    console.sureMsgDelete(user);
-    if (console.checker()) {
-      userMan.removeUser(user);
+    if (user.equals(currentUser)) {
+      console.cantRemove();
+    } else {
+      console.sureMsgDelete(user);
+      if (console.checker()) {
+        userMan.removeUser(user);
+      }
     }
   }
 
   public void viewUsers() {
     console.printUsers(userMan.getUsers());
+  }
+
+  /**
+  * adds users.
+  */
+  public void addUsers(Map<String, String> users) {
+    for (Entry<String, String> user : users.entrySet()) {
+      userMan.addUser(user.getKey(), user.getValue());
+    }
+
+  }
+
+  public Map<String, String> getUsers() {
+    return userMan.getUsers();
   }
 
 }

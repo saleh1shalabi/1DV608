@@ -1,7 +1,5 @@
 package controller;
 
-import model.domain.MemberManager;
-import model.domain.UserManager;
 import model.presistence.FileLoader;
 
 
@@ -11,8 +9,7 @@ import model.presistence.FileLoader;
 public class FileController extends DataController {
 
 
-  FileController(MemberManager memMan, UserManager userMan) {
-    super(memMan, userMan);
+  FileController() {
     super.hc = new FileLoader();
   }
   

@@ -2,8 +2,6 @@ package controller;
 
 import java.util.Map.Entry;
 import model.domain.Member;
-import model.domain.MemberManager;
-import model.domain.UserManager;
 import view.ConsoleUi;
 
 
@@ -13,19 +11,21 @@ import view.ConsoleUi;
 public class Controller {
   
   private ConsoleUi console = new ConsoleUi();
-  private MemberManager memMan = new MemberManager();
-  private UserManager userMan = new UserManager();
-  private DataController fc = new FileController(memMan, userMan);
-  private UserController userCon = new UserController(userMan, console);
+  private DataController fc = new FileController();
+
+  // HardCode Controller, to use comment the prevuios line and un comment bellow 
+  // private DataController fc = new HardCodeController(memMan, userMan);
+
+  private UserController userCon = new UserController(console);
   private BoatController boatCon = new BoatController(console);
-  private MemberController memCon = new MemberController(memMan, boatCon, console);
+  private MemberController memCon = new MemberController(boatCon, console);
 
   public void memAdder() {
-    fc.memAdder();
+    memCon.addMembers(fc.memAdder());
   }
 
   public void userAdder() {
-    fc.userAdder();
+    userCon.addUsers(fc.userAdder());
   }
 
   public boolean logInCheck(Entry<String, String> acount) {
@@ -33,7 +33,7 @@ public class Controller {
   }
 
   public void save() {
-    fc.save();
+    fc.save(userCon.getUsers(),memCon.getMembers());
   }
 
   public void registerBoat(Member mem) {
@@ -56,12 +56,12 @@ public class Controller {
     memCon.changeMember(mem);
   }
 
-  public void viewVerboseList() {
-    memCon.viewVerboseList();
+  public void showVerboseList() {
+    console.showVerboseList(memCon.getMembers());
   }
 
-  public void viewCompactList() {
-    memCon.viewCompactList();
+  public void showCompactList() {
+    console.showCompactList(memCon.getMembers());
   }
 
   public void removeMember() {
@@ -73,7 +73,7 @@ public class Controller {
   }
 
   public String userChooser() {
-    return userCon.chooseUser(userMan);
+    return userCon.chooseUser();
   }
 
   public void removeUser(String user) {
@@ -89,23 +89,23 @@ public class Controller {
   }
 
   public void findByName() {
-    memCon.findByName(memMan.getMembers());
+    memCon.findByName();
   }
 
   public void findByAge() {
-    memCon.findByAge(memMan.getMembers());
+    memCon.findByAge();
   }
 
   public void findByMonth() {
-    memCon.findByMonth(memMan.getMembers());
+    memCon.findByMonth();
 
   }
 
   public void findByYear() {
-    memCon.findByYear(memMan.getMembers());
+    memCon.findByYear();
   }
 
   public void findByBoat() {
-    memCon.findByBoat(memMan.getMembers());
+    memCon.findByBoat();
   }
 }
