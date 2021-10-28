@@ -11,7 +11,7 @@ import view.ConsoleUi;
 public class Controller {
   
   private ConsoleUi console = new ConsoleUi();
-  private DataController fc = new FileController();
+  private DataController fc = new DBController();
 
   // HardCode Controller, to use comment the prevuios line and un comment bellow 
   // private DataController fc = new HardCodeController(memMan, userMan);

@@ -1,6 +1,6 @@
 package controller;
 
-import model.presistence.DBLoade;
+import model.presistence.DBLoader;
 
 /**
  * Responsible for staring the application.
@@ -12,9 +12,9 @@ public class App {
    */
   public static void main(String[] args) {
     BoatClub a = new BoatClub();
-    DBLoade c = new DBLoade();
+    // DBLoade c = new DBLoade();
     
-    // a.startApp();
+    a.startApp();
   }
   
 }
