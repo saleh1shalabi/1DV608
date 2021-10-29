@@ -21,6 +21,7 @@ public class ByMonth implements Search {
       }
     }
     ArrayList<Member> founded = new ArrayList<>(found);
+    clearList();
     return founded;
   }
 

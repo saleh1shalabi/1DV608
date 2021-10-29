@@ -23,6 +23,7 @@ public class ByBoat implements Search {
       }
     }
     ArrayList<Member> founded = new ArrayList<>(found);
+    clearList();
     return founded;
   }
 

@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,7 +15,7 @@ public class UserController {
   private ConsoleUi console;
   private String currentUser;
 
-  UserController(ConsoleUi console) {
+  public UserController(ConsoleUi console) {
     this.console = console;
   }
 

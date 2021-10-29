@@ -1,10 +1,13 @@
-package controller;
+package controller.controllers;
 
 import model.presistence.DBLoader;
 
+/**
+* to add data from DB.
+*/
 public class DBController extends DataController {
 
-  DBController() {
+  public DBController() {
     super.hc = new DBLoader();
   }
   

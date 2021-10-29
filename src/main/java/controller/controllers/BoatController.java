@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import model.domain.Boat;
 import model.domain.Member;
@@ -11,8 +11,7 @@ public class BoatController {
   
   private ConsoleUi console;
 
-
-  BoatController(ConsoleUi console) {
+  public BoatController(ConsoleUi console) {
     this.console = console;
   }
   

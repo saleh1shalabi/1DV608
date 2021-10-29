@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import model.presistence.HardCodeImplemets;
 

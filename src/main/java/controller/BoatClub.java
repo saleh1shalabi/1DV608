@@ -147,30 +147,7 @@ public class BoatClub {
     Search g = null;
     while (g != Search.Back) {
       g = console.searchChoies();
-      switch (g) {
-        case Name:
-          controller.findByName();
-          break;
-        case Age:
-          controller.findByAge();
-    
-          break;
-        case Month:
-          controller.findByMonth();
-          break;
-        case Year:
-          controller.findByYear();
-          break;
-        case Boat:
-          controller.findByBoat();
-          break;
-        case Complex:
-          controller.complexSearch();
-          break;
-        case Back:
-          break;
-        default:
-      }
+      controller.getFounded(g);
     }
   }
 

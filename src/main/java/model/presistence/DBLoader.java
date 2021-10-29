@@ -12,6 +12,9 @@ import java.util.Map;
 import model.domain.Boat;
 import model.domain.Member;
 
+/**
+* to add data from files.
+*/
 public class DBLoader implements PersistenceInterface {
   
   private final String user = "root";
@@ -28,6 +31,9 @@ public class DBLoader implements PersistenceInterface {
   private Map<String, ArrayList<Boat>> membersBoats = new HashMap<>();
 
 
+  /**
+  * to add data from files.
+  */
   public DBLoader() {
     try {
       connect();
@@ -36,13 +42,16 @@ public class DBLoader implements PersistenceInterface {
         createDb();
       } else {
       e.printStackTrace();
-      }
+      } 
     } 
   }
 
+  /**
+  * to add data from files.
+  */  
   private void createDb() {
     String sql = "Create database test";
-    try(Connection conn = con = DriverManager.getConnection(url, user, pass)) {
+    try(Connection conn = DriverManager.getConnection(url, user, pass)) {
       Statement stmt = conn.createStatement();
       stmt.execute(sql);
       sql = "use test";
@@ -52,9 +61,13 @@ public class DBLoader implements PersistenceInterface {
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
-    }
+    } 
+
   } 
 
+  /**
+  * to add data from files.
+  */  
   private void addTables() {
     String sql;    
     try(Connection conn = connect()) {
@@ -79,9 +92,20 @@ public class DBLoader implements PersistenceInterface {
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   private void insertData() {
     PersistenceInterface hc = new FileLoader();
     try (Connection conn = connect()) {
@@ -117,16 +141,29 @@ public class DBLoader implements PersistenceInterface {
       conn.close();
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   public Connection connect() throws SQLException {
     con = DriverManager.getConnection(db, user, pass);
     return con;
   }
 
   
-
+  /**
+  * to add data from files.
+  */
   @Override
   public String[] getNames() {
     readMembers();
@@ -134,6 +171,9 @@ public class DBLoader implements PersistenceInterface {
     return namesToRet;
   }
 
+  /**
+  * to add data from files.
+  */
   private void readMembers() {
     String sql;
     try (Connection conn = connect()) {
@@ -159,25 +199,40 @@ public class DBLoader implements PersistenceInterface {
         memberIds = Arrays.copyOf(memberIds, memberIds.length + 1);
         memberIds[memberIds.length - 1] = memberId;
       }
-      
-
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public int[] getPersonalIds() {
     int[] perToRet = Arrays.copyOf(personalIds, personalIds.length);
     return perToRet;
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public String[] getMemberIds() {
     String[] memIdToRet = Arrays.copyOf(memberIds, memberIds.length);
     return memIdToRet;
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public Map<String, ArrayList<Boat>> getBoats() {
     readBoats();
@@ -185,6 +240,9 @@ public class DBLoader implements PersistenceInterface {
     return toRet;
   }
 
+  /**
+  * to add data from files.
+  */  
   private void readBoats() {
     String sql;
     try (Connection conn = connect()) {
@@ -206,9 +264,20 @@ public class DBLoader implements PersistenceInterface {
 
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public void saveBoats(Iterable<Member> members) {
     try (Connection conn = connect()) {
@@ -227,9 +296,20 @@ public class DBLoader implements PersistenceInterface {
       }
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public void saveMembers(Iterable<Member> members) {
     try (Connection conn = connect()) {
@@ -250,9 +330,20 @@ public class DBLoader implements PersistenceInterface {
         } 
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public void saveUsers(Map<String, String> users) {
     try (Connection conn = connect()) {
@@ -266,9 +357,20 @@ public class DBLoader implements PersistenceInterface {
       }
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 
+  /**
+  * to add data from files.
+  */
   @Override
   public Map<String, String> getUsers() {
     readUsers();
@@ -276,6 +378,9 @@ public class DBLoader implements PersistenceInterface {
     return us;
   }
 
+  /**
+  * to add data from files.
+  */
   private void readUsers() {
     String sql;
     try (Connection conn = connect()) {
@@ -293,6 +398,14 @@ public class DBLoader implements PersistenceInterface {
       }
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        if (con != null) {
+          con.close();
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      } 
     }
   }
 

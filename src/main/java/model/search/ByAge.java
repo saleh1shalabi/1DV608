@@ -20,6 +20,7 @@ public class ByAge implements Search {
       }
     }
     ArrayList<Member> founded = new ArrayList<>(found);
+    clearList();
     return founded;
   }
 

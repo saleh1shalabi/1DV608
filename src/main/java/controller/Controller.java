@@ -1,6 +1,12 @@
 package controller;
 
 import java.util.Map.Entry;
+
+import controller.controllers.BoatController;
+import controller.controllers.DBController;
+import controller.controllers.DataController;
+import controller.controllers.MemberController;
+import controller.controllers.UserController;
 import model.domain.Member;
 import view.ConsoleUi;
 
@@ -88,28 +94,7 @@ public class Controller {
     userCon.userAdder();
   }
 
-  public void findByName() {
-    memCon.findByName();
-  }
-
-  public void findByAge() {
-    memCon.findByAge();
-  }
-
-  public void findByMonth() {
-    memCon.findByMonth();
-
-  }
-
-  public void findByYear() {
-    memCon.findByYear();
-  }
-
-  public void findByBoat() {
-    memCon.findByBoat();
-  }
-
-  public void complexSearch() {
-    memCon.complexSearch();
+  public void getFounded(view.Choises.Search g) {
+    memCon.getFounded(memCon.getMembers(), g);
   }
 }

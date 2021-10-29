@@ -1,12 +1,11 @@
-package controller;
+package controller.controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.Set;
 import model.domain.Member;
 import model.domain.MemberManager;
 import model.search.ByAge;
 import model.search.ByBoat;
+import model.search.ByComplex;
 import model.search.ByMonth;
 import model.search.ByName;
 import model.search.ByYear;
@@ -23,8 +22,9 @@ public class MemberController {
   private MemberManager memMan = new MemberManager();
   private BoatController boatCon;
   private Search search;
+  private view.Choises.Search finn = null;
 
-  MemberController(BoatController boatCon, ConsoleUi console) {
+  public MemberController(BoatController boatCon, ConsoleUi console) {
     this.boatCon = boatCon;
     this.console = console;
   }
@@ -83,30 +83,47 @@ public class MemberController {
 
   /**
   * finds the search wanted.
+   * @return 
   */
-  private void getFounded(Iterable<Member> iterable, view.Choises.Search s) { 
+  public ArrayList<Member> getFounded(Iterable<Member> iterable, view.Choises.Search g) { 
     String toSearch = "";
-    switch (s) {
+    switch (g) {
       case Name:
+        search = new ByName();
         toSearch = console.getString();
         break;
       case Age:
+        search = new ByAge();
         toSearch = String.valueOf(console.getAge());
         break;
       case Month:
+        search = new ByMonth();
         toSearch = String.valueOf(console.getMonth());
         break;
       case Year:
+        search = new ByYear();
         toSearch = String.valueOf(console.getYear());
         break;
       case Boat:
+        search = new ByBoat();
         toSearch = console.getBoatType();
+        break;
+      case Complex:
+        advanced(getMembers());
+        break;
+      case Back:
         break;
       default:
         break;
     }
-    ArrayList<Member> members = search.find(iterable, toSearch);
-    printFounded(members);
+    if (g == view.Choises.Search.Back) {
+      return null;
+    } else {
+      ArrayList<Member> members = search.find(iterable, toSearch);
+      printFounded(members);
+      return members;
+    }
+    
   }
 
   private void printFounded(ArrayList<Member> members) {
@@ -117,48 +134,6 @@ public class MemberController {
       console.showVerboseList(mems);
     }
     search.clearList();
-  }
-
-  /**
-  * finds the search by name.
-  */
-  public void findByName() {
-    search = new ByName();
-    getFounded(getMembers(), view.Choises.Search.Name);
-
-  }
-
-  /**
-  * finds the search by Year of berth.
-  */
-  public void findByYear() {
-    search = new ByYear();
-    getFounded(getMembers(), view.Choises.Search.Year);
-  }
-
-  /**
-  * finds the search by Age.
-  */
-  public void findByAge() {
-    
-    search = new ByAge();
-    getFounded(getMembers(), view.Choises.Search.Age);
-  }
-
-  /**
-  * finds the search by month of berth.
-  */
-  public void findByMonth() {
-    search = new ByMonth();
-    getFounded(getMembers(), view.Choises.Search.Month);
-  }
-
-  /**
-  * finds the search by type of boats owned.
-  */
-  public void findByBoat() {
-    search = new ByBoat();
-    getFounded(getMembers(), view.Choises.Search.Boat);
   }
 
   public Iterable<Member> getMembers() {
@@ -181,27 +156,21 @@ public class MemberController {
   * and shows all members that name start with "Sa" and age of 22. 
   * Changing the vlues changes the results. 
   */
-  public void complexSearch() {
-    String month = "7";
-    search = new ByMonth();
-    ArrayList<Member> membersByMonth = search.find(getMembers(), month);
-    Set<Member> set = new LinkedHashSet<>(membersByMonth);
-
-    String name = "Sa";
-    search = new ByName();
-    ArrayList<Member> membersByName = search.find(getMembers(), name);
-    
-    String age = "22";
-    search = new ByAge();
-    membersByName = search.find(membersByName, age);
-    
-    for (Member mem : membersByName) {
-      set.add(mem);
-    }
-    ArrayList<Member> founded = new ArrayList<>(set);
-    printFounded(founded);
-
+  private void advanced(Iterable<Member> iterable) {
+    search = new ByComplex("7", "Sa", "22");
+    // if u want to test in not hard coded uncomment bellow.
+    // search = new ByComplex(String.valueOf(console.getMonth()),console.getString(), String.valueOf(console.getAge()));
+    ArrayList<Member> mems = search.find(iterable, "");
+    printFounded(mems);
 
   }
 
+  /**
+  * We think it's better to not even create a new class
+  * in the interface but only use the already exsisting one's 
+  * there is another way of using the complex search
+  * by not using the new ByComplex Class and only use exsisting
+  * in this case the complex search will only be in the controller
+  * not in model.
+  */
 }
