@@ -3,9 +3,11 @@ package model.search;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import model.domain.Member;
 
+/**
+ * complex Search Based on (month || (name && age)).
+ */
 public class ByComplex implements Search {
 
   private ArrayList<Member> found = new ArrayList<>();
@@ -14,12 +16,18 @@ public class ByComplex implements Search {
   String name;
   
 
+  /**
+   * constructor takes in.
+   */
   public ByComplex(String month, String name, String age) {
     this.month = month; 
     this.name = name;
     this.age = age;
   }
 
+  /**
+  * opreation of finding by the complex search.
+  */
   @Override
   public ArrayList<Member> find(Iterable<Member> members, String string) {
     Search s = new ByMonth();

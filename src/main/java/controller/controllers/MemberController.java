@@ -18,16 +18,10 @@ import view.ConsoleUi;
 */
 public class MemberController {
 
-  private ConsoleUi console;
+  private ConsoleUi console = new ConsoleUi();
   private MemberManager memMan = new MemberManager();
-  private BoatController boatCon;
+  private BoatController boatCon = new BoatController();
   private Search search;
-  private view.Choises.Search finn = null;
-
-  public MemberController(BoatController boatCon, ConsoleUi console) {
-    this.boatCon = boatCon;
-    this.console = console;
-  }
   
   public Member memberChooser() {
     int memIndex = console.chooseMember(memMan.getMembers(), memMan.getMembers().size());
@@ -61,7 +55,7 @@ public class MemberController {
     console.sureMsgChange();
     boolean check = console.checker();
     if (check) {
-      if (console.whatToChange() == 1) {
+      if (console.whatToChangeMember() == 1) {
         mem.setName(console.firstNameGetter() + console.lastNameGetter());
       } else {
         mem.setPersonalId(console.personalIdGetter());
@@ -83,7 +77,8 @@ public class MemberController {
 
   /**
   * finds the search wanted.
-   * @return 
+  *
+  * @return members.
   */
   public ArrayList<Member> getFounded(Iterable<Member> iterable, view.Choises.Search g) { 
     String toSearch = "";
@@ -165,12 +160,12 @@ public class MemberController {
 
   }
 
-  /**
-  * We think it's better to not even create a new class
-  * in the interface but only use the already exsisting one's 
-  * there is another way of using the complex search
-  * by not using the new ByComplex Class and only use exsisting
-  * in this case the complex search will only be in the controller
-  * not in model.
-  */
+  
+  // * We think it's better to not even create a new class
+  // * in the interface but only use the already exsisting one's 
+  // * there is another way of using the complex search
+  // * by not using the new ByComplex Class and only use exsisting
+  // * in this case the complex search will only be in the controller
+  // * not in model.
+  
 }

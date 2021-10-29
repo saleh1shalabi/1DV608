@@ -109,7 +109,7 @@ public class ConsoleUi {
     consoleMem.showSpecMemberInfo(mem);
   }
 
-  public int whatToChange() {
+  public int whatToChangeMember() {
     return consoleMem.whatToChange();
   }
 
@@ -194,6 +194,10 @@ public class ConsoleUi {
 
   public int chooseBoat(Member mem) {
     return consoleBoat.chooseBoat(mem);
+  }
+  
+  public int whatToChangeBoat() {
+    return consoleBoat.whatToChange();
   }
 
 }

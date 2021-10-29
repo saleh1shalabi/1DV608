@@ -12,12 +12,8 @@ import view.ConsoleUi;
 public class UserController {
 
   private UserManager userMan = new UserManager();
-  private ConsoleUi console;
+  private ConsoleUi console = new ConsoleUi();
   private String currentUser;
-
-  public UserController(ConsoleUi console) {
-    this.console = console;
-  }
 
   /**
   * Responsible of checking if the user is vaild.

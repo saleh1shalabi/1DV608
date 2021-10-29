@@ -9,11 +9,7 @@ import view.ConsoleUi;
 */
 public class BoatController {
   
-  private ConsoleUi console;
-
-  public BoatController(ConsoleUi console) {
-    this.console = console;
-  }
+  private ConsoleUi console = new ConsoleUi();
   
   /**
   * Responsible for register a boat to a member.
@@ -34,7 +30,7 @@ public class BoatController {
     console.sureMsgChange();
     boolean check = console.checker();
     if (check) {
-      if (console.whatToChange() == 1) {
+      if (console.whatToChangeBoat() == 1) {
         mem.getBoats().get(boatIndex).setType(console.getBoatType());
       } else {
         mem.getBoats().get(boatIndex).setLength(console.lengthGetter());

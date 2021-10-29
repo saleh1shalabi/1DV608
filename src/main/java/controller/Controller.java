@@ -1,12 +1,11 @@
 package controller;
 
-import java.util.Map.Entry;
-
 import controller.controllers.BoatController;
-import controller.controllers.DBController;
 import controller.controllers.DataController;
+import controller.controllers.DbController;
 import controller.controllers.MemberController;
 import controller.controllers.UserController;
+import java.util.Map.Entry;
 import model.domain.Member;
 import view.ConsoleUi;
 
@@ -17,14 +16,14 @@ import view.ConsoleUi;
 public class Controller {
   
   private ConsoleUi console = new ConsoleUi();
-  private DataController fc = new DBController();
+  private DataController fc = new DbController();
 
   // HardCode Controller, to use comment the prevuios line and un comment bellow 
   // private DataController fc = new HardCodeController(memMan, userMan);
 
-  private UserController userCon = new UserController(console);
-  private BoatController boatCon = new BoatController(console);
-  private MemberController memCon = new MemberController(boatCon, console);
+  private UserController userCon = new UserController();
+  private BoatController boatCon = new BoatController();
+  private MemberController memCon = new MemberController();
 
   public void memAdder() {
     memCon.addMembers(fc.memAdder());

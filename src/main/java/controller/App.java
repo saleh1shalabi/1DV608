@@ -1,6 +1,6 @@
 package controller;
 
-import model.presistence.DBLoader;
+import model.presistence.DbLoader;
 
 /**
  * Responsible for staring the application.
